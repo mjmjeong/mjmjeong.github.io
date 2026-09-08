@@ -170,6 +170,17 @@ html {
     font-weight: 700;
 }
 
+.site-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.mobile-availability {
+    display: none;
+}
+
 .site-nav-links {
     display: flex;
     align-items: center;
@@ -837,6 +848,28 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
 }
 
 @media screen and (max-width: 799px) {
+    .site-nav .site-nav-inner {
+        box-sizing: border-box;
+        min-height: 3.2rem;
+        padding: 0.4rem 0;
+    }
+
+    .site-identity {
+        gap: 0.12rem;
+        line-height: 1.2;
+    }
+
+    .mobile-availability {
+        display: block;
+        color: #7046b5;
+        font-size: 0.65rem;
+        font-weight: 600;
+        line-height: 1.3;
+        white-space: nowrap;
+        text-shadow: 0 0 8px rgba(166, 117, 242, 0.3),
+                     0 0 18px rgba(166, 117, 242, 0.18);
+    }
+
     .profile-intro {
         grid-template-columns: 180px minmax(0, 1fr);
         gap: 2rem;
