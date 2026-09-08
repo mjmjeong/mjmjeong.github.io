@@ -1,3 +1,12 @@
+/* Shared lavender palette for research content and links. */
+:root {
+    --research-accent: #6266a0;
+    --research-accent-hover: #474b80;
+    --research-surface: #f9f9fd;
+    --research-line: #d7d9eb;
+    --research-marker: #9499c5;
+}
+
 /* My stuff */
 
 table.papers{
@@ -97,7 +106,7 @@ table#tlayout {
 
 body {
 	background: #ffffff;
-	color: #15211b;
+	color: #202027;
 	font: 1em/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         /* font: 1em/1.5 Helevetica,Georgia,sans-serif,Geneva,Tahoma; */
 	padding-bottom: 8px;
@@ -140,7 +149,7 @@ html {
     position: sticky;
     top: 0;
     z-index: 10;
-    border-bottom: 1px solid #dbe4dc;
+    border-bottom: 1px solid #e3e2eb;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
 }
@@ -148,14 +157,15 @@ html {
 .site-nav-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 2.5rem;
     width: min(1060px, calc(100% - 3rem));
     min-height: 4rem;
     margin: 0 auto;
 }
 
 .site-brand {
-    color: #15211b;
+    color: #202027;
     font-size: 1.15rem;
     font-weight: 700;
 }
@@ -169,13 +179,151 @@ html {
 }
 
 .site-nav-links a {
-    color: #35443a;
+    color: #41414c;
 }
 
 .site-brand:hover,
 .site-nav-links a:hover {
     border-bottom: none;
-    color: #0e7b53;
+    color: var(--research-accent);
+}
+
+.desktop-profile {
+    display: none;
+}
+
+@media screen and (min-width: 1100px) {
+    #layout-content {
+        --profile-top-spacing: 2.5rem;
+        display: grid;
+        width: min(1240px, calc(100% - 3rem));
+        grid-template-columns: 190px minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+
+    .site-nav-inner {
+        width: min(1240px, calc(100% - 3rem));
+    }
+
+    .desktop-profile {
+        position: sticky;
+        top: 6.5rem;
+        z-index: 6;
+        display: block;
+        align-self: start;
+        margin-top: var(--profile-top-spacing);
+        padding-top: 0;
+        background: #ffffff;
+        color: #5e5e69;
+        text-align: left;
+    }
+
+    .desktop-profile img {
+        display: block;
+        width: 170px;
+        height: auto;
+        max-height: none;
+        border-radius: 0;
+    }
+
+    .desktop-profile h2 {
+        margin: 1.1rem 0 0.25rem;
+        font-family: inherit;
+        font-size: 1.15rem;
+        font-weight: 700;
+    }
+
+    .desktop-profile p {
+        margin: 0;
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
+
+    .desktop-profile p a {
+        color: inherit;
+    }
+
+    .desktop-profile-links {
+        display: flex;
+        margin-top: 1.1rem;
+        flex-direction: column;
+        gap: 0.45rem;
+        font-size: 0.86rem;
+        font-weight: 600;
+    }
+
+    .desktop-profile .opportunity-note {
+        margin: 0.5rem 0 1rem;
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    .desktop-profile-links a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #6b6b76;
+    }
+
+    .desktop-profile-links .social-icon {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+    }
+
+    .desktop-profile-links a:hover {
+        border-bottom: none;
+        color: var(--research-accent);
+    }
+
+    #layout-content .profile-intro {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: var(--profile-top-spacing);
+        padding-bottom: 1.25rem;
+    }
+
+    #layout-content .profile-copy {
+        padding-top: 0;
+    }
+
+    #layout-content .profile-copy .profile-name {
+        margin-top: 0;
+    }
+
+    .profile-intro .profile-side {
+        display: none;
+    }
+
+    .profile-copy .profile-role,
+    .profile-copy .profile-social {
+        display: none;
+    }
+
+    #layout-content .research-timeline {
+        margin-left: calc(1.25em + 5ch);
+        font-size: 0.9rem;
+    }
+
+    #layout-content .research-summary {
+        margin-top: 0;
+        padding-top: 0;
+        padding-right: 0;
+        padding-left: 0;
+        background: transparent;
+        box-shadow: none;
+        clip-path: none;
+    }
+
+    .profile-copy {
+        width: 100%;
+        max-width: none;
+    }
+
+    .research-statement,
+    .opportunity-note {
+        max-width: 52rem;
+    }
 }
 
 /* Profile header */
@@ -197,7 +345,7 @@ html {
     margin: 0 0 0.2rem;
     padding: 0;
     border: 0;
-    color: #15211b;
+    color: #202027;
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 2.25rem;
     font-weight: 700;
@@ -208,7 +356,7 @@ html {
 .profile-role {
     max-width: 38rem;
     margin-bottom: 1.15rem;
-    color: #536158;
+    color: #5e5e69;
     font-size: 0.98rem;
     line-height: 1.55;
 }
@@ -236,7 +384,7 @@ html {
     flex-wrap: wrap;
     gap: 0.6rem 1.6rem;
     margin: 1.5rem 0 0;
-    color: #667168;
+    color: #6b6b76;
     font-size: 1.05rem;
     font-weight: 500;
 }
@@ -245,11 +393,11 @@ html {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    color: #667168;
+    color: #6b6b76;
 }
 
 .profile-social a:hover {
-    color: #0e7b53;
+    color: var(--research-accent);
 }
 
 .social-icon {
@@ -264,7 +412,7 @@ html {
 
 .opportunity-note {
     margin: 0;
-    color: #536158;
+    color: #3e3e48;
     font-size: 1rem;
     line-height: 1.6;
 }
@@ -276,31 +424,51 @@ html {
 }
 
 .opportunity-note .opportunity-date {
-    color: inherit;
+    color: #b42318;
     font-weight: 700;
+    white-space: nowrap;
+}
+
+.opportunity-note .opportunity-role {
+    color: #3e3e48;
+}
+
+.desktop-profile .opportunity-note strong {
+    color: #b42318;
+}
+
+.opportunity-note .graduation-note {
+    color: #000000;
+}
+
+.opportunity-note .availability-date {
+    color: var(--research-accent);
+    font-weight: 400;
+}
+
+.opportunity-note .opportunity-message {
+    color: inherit;
+    font-weight: 400;
 }
 
 .research-statement {
     max-width: 48rem;
     margin: 0 0 0.85rem;
-    color: #454b46;
+    color: #3e3e48;
     font-size: 1.05rem;
     line-height: 1.65;
 }
 
 .research-keywords {
-    color: #0e7b53;
+    color: #000000;
     font-weight: 700;
 }
 
 .research-summary {
     margin: 0 0 3rem;
     padding: 2rem 0 1.5rem;
-    background: #f4f7fa;
-    box-shadow: 0 0 0 100vmax #f4f7fa;
-    clip-path: inset(0 -100vmax);
-    /* Scale this section as one visual unit on narrower screens. */
-    font-size: clamp(0.68rem, 0.5rem + 0.65vw, 0.9rem);
+    background: transparent;
+    font-size: 0.95rem;
 }
 
 .research-summary h2 {
@@ -309,54 +477,133 @@ html {
     font-size: 1.65em;
 }
 
+.research-summary .research-statement {
+    max-width: 80ch;
+    margin-bottom: 0.85rem;
+}
+
+.research-summary .opportunity-note {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem 1rem;
+    box-sizing: border-box;
+    max-width: 80ch;
+    margin-bottom: 0.65rem;
+}
+
+.research-summary .opportunity-heading {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.research-contact {
+    margin: 0 0 1.75rem;
+    color: #3e3e48;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.research-contact a,
+.opportunity-note .opportunity-cv {
+    color: var(--research-accent);
+    font-weight: 400;
+    white-space: nowrap;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.research-contact a:hover,
+.research-contact a:focus-visible,
+.opportunity-note .opportunity-cv:hover,
+.opportunity-note .opportunity-cv:focus-visible {
+    color: var(--research-accent-hover);
+    border-bottom: none;
+}
+
+a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"] {
+    color: var(--research-accent);
+}
+
+a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:hover,
+a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
+    color: var(--research-accent-hover);
+}
+
+.research-overview-panel {
+    --research-accent: #6266a0;
+    --research-accent-hover: #474b80;
+    --research-surface: #f9f9fd;
+    --research-line: #d7d9eb;
+    --research-marker: #9499c5;
+    margin-top: 2rem;
+    padding: 1.5rem 1.25rem 1.5rem 0;
+    background: var(--research-surface);
+}
+
+.opportunity-note .opportunity-cv,
+.opportunity-note .opportunity-cv:hover,
+.opportunity-note .opportunity-cv:focus-visible {
+    color: #000000;
+}
+
 .research-timeline {
+    position: relative;
+    margin-top: 0;
     margin-left: 1.25em;
-    border-left: 0.1875em solid #527099;
+    border-left: 2px solid var(--research-line);
 }
 
 .research-period {
     position: relative;
     display: grid;
     align-items: baseline;
-    width: 95%;
+    width: 100%;
+    box-sizing: border-box;
     grid-template-columns: 4.5em minmax(0, 1fr);
     gap: 0.85em;
-    padding: 0 0 0.65em 1em;
+    padding: 0 0 0.35em 1rem;
 }
 
 .research-period:last-child {
     padding-bottom: 0;
 }
 
-.research-period::before {
+.research-year::before {
     position: absolute;
-    top: 0.38em;
-    left: -0.48em;
-    width: 0.7em;
-    height: 0.7em;
+    top: 50%;
+    left: calc(-1rem - 6px);
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: #527099;
+    background: var(--research-marker);
     content: "";
 }
 
 .research-year {
+    position: relative;
     margin: 0;
-    color: #15211b;
+    color: var(--research-accent);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.9em;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1.4;
 }
 
 .research-period-content h3 {
-    margin: 0 0 0.12em;
+    margin: 0 0 0.3em;
     padding: 0;
     border: 0;
-    color: #15211b;
+    color: #202027;
     font-family: inherit;
     font-size: 0.98em;
     font-weight: 700;
     line-height: 1.4;
+}
+
+#layout-content .research-period-content h3:first-child {
+    margin-top: 0;
 }
 
 .research-period-content ul {
@@ -366,21 +613,33 @@ html {
 }
 
 .research-period-content li {
-    margin: 0.08em 0;
-    color: #68716b;
+    margin: 0.12em 0;
+    color: #3e3e48;
     font-size: 0.9em;
-    line-height: 1.32;
+    line-height: 1.4;
 }
 
 .research-period-content li::before {
-    color: #527099;
-    content: "— ";
+    content: none;
 }
 
 .research-period-content a,
 .research-venue {
-    color: #527099;
+    color: var(--research-accent);
     font-weight: 700;
+}
+
+.research-period-content .research-highlight {
+    color: var(--research-accent);
+    font-weight: 700;
+}
+
+.research-period-content a:hover,
+.research-period-content a:focus-visible {
+    color: var(--research-accent-hover);
+    border-bottom: none;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
 }
 
 .research-meta {
@@ -396,11 +655,10 @@ html {
 .profile-photo img {
     display: block;
     width: 100%;
+    height: auto;
     max-height: none;
     border: none;
-    border-radius: 50%;
-    aspect-ratio: 1;
-    object-fit: contain;
+    border-radius: 0;
 }
 
 .news-section {
@@ -434,13 +692,13 @@ html {
 }
 
 .education-list li:last-child {
-    border-bottom: 1px solid #dbe4dc;
+    border-bottom: 1px solid #e3e2eb;
 }
 
 .news-list time {
     display: block;
     margin: 0;
-    color: #0e7b53;
+    color: var(--research-accent);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.88rem;
     font-weight: 700;
@@ -459,7 +717,60 @@ html {
 
 .education-list li {
     padding: 1rem 0;
-    border-top: 1px solid #dbe4dc;
+    border-top: 1px solid #e3e2eb;
+}
+
+.experience-section {
+    padding-top: 2rem;
+    margin-bottom: 1.75rem;
+}
+
+#layout-content .experience-section h2:first-child,
+#layout-content .experience-heading h3:first-child {
+    margin-top: 0;
+}
+
+.experience-entry {
+    padding: 0.75rem 0;
+    border-top: 1px solid #e3e2eb;
+    color: #3e3e48;
+}
+
+.experience-entry:last-child {
+    border-bottom: 1px solid #e3e2eb;
+}
+
+.experience-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+}
+
+.experience-heading h3 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: #202027;
+}
+
+.experience-entry p {
+    margin: 0.2rem 0 0;
+    line-height: 1.45;
+}
+
+.experience-entry .experience-date {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #5e5e69;
+}
+
+.experience-role {
+    color: #5e5e69;
+    font-size: 0.92rem;
 }
 
 .education-list p {
@@ -467,17 +778,17 @@ html {
 }
 
 .education-degree {
-    color: #15211b;
+    color: #202027;
     font-weight: 700;
 }
 
 .education-place {
-    color: #536158;
+    color: #5e5e69;
 }
 
 .education-detail {
     margin-top: 0.25rem !important;
-    color: #536158;
+    color: #5e5e69;
     font-size: 0.92rem;
 }
 
@@ -496,6 +807,20 @@ html {
 }
 
 @media screen and (max-width: 600px) {
+    .site-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+        padding: 0.75rem 0;
+    }
+
+    .site-nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0.5rem 0.85rem;
+        font-size: 0.85rem;
+    }
+
     .profile-intro {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -537,11 +862,6 @@ html {
 
 }
 
-@media screen and (max-width: 400px) {
-    .site-nav-links a:first-child {
-        display: none;
-    }
-}
 
 #layout-menu a {
 	line-height: 1.5em;
@@ -558,12 +878,12 @@ pre, tt {
 }
 
 a, a > tt {
-	color: #0e7b53;
+	color: var(--research-accent);
 	text-decoration: none;
 }
 
 a:hover {
-	border-bottom: 1px #0e7b53 dotted;
+	border-bottom: 1px var(--research-accent) dotted;
 }
 
 #layout-menu a.current:link, #layout-menu a.current:visited {
@@ -619,7 +939,7 @@ strong {
 
 
 h1, h2, h3 {
-	color: #15211b;
+	color: #202027;
 	margin-top: 3.5rem;
 	margin-bottom: 1rem;
 	padding: 0;
@@ -637,8 +957,16 @@ h2 {
 	font-size: 1.7rem;
 }
 
-#publications {
-    scroll-margin-top: 5rem;
+#research-summary-title,
+#about,
+#experience,
+#news-title,
+#education,
+#publications,
+#honors,
+#teaching,
+#grants {
+    scroll-margin-top: 7rem;
 }
 
 .papers tr[id] {
@@ -879,4 +1207,40 @@ table.imgtable, table.imgtable td {
 name {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 32px;
+}
+
+/* Soft violet glow on interactive links, without shifting surrounding text. */
+body#top a[href] {
+    border-radius: 3px;
+    text-underline-offset: 0.2em;
+    transition: color 180ms ease, background-color 180ms ease,
+                box-shadow 180ms ease, text-shadow 180ms ease;
+}
+
+.desktop-profile-links a {
+    width: fit-content;
+    max-width: 100%;
+}
+
+body#top a[href]:is(:hover, :focus-visible) {
+    color: #7042b5;
+    background-color: rgba(166, 119, 235, 0.09);
+    box-shadow: 0 0 8px rgba(161, 109, 230, 0.18),
+                0 0 18px rgba(161, 109, 230, 0.12);
+    text-shadow: 0 0 10px rgba(157, 98, 233, 0.25);
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration-color: #a47adb;
+    text-decoration-thickness: 1px;
+}
+
+body#top a[href]:focus-visible {
+    outline: 2px solid #a47adb;
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body#top a[href] {
+        transition: none;
+    }
 }
