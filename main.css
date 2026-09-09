@@ -180,6 +180,11 @@ html {
     display: none;
 }
 
+.mobile-menu-toggle,
+.mobile-navigation {
+    display: none;
+}
+
 .site-nav-links {
     display: flex;
     align-items: center;
@@ -450,7 +455,7 @@ body#top .site-nav a[href]:is(:hover, :focus-visible) {
 }
 
 .profile-social {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     gap: 0.6rem 1.6rem;
     margin: 1.5rem 0 0;
@@ -863,6 +868,56 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
 }
 
 @media screen and (max-width: 799px) {
+    .site-nav .site-nav-inner .site-nav-links {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid #e3dced;
+        border-radius: 7px;
+        background: #fff;
+        color: #55476e;
+        cursor: pointer;
+    }
+
+    .mobile-menu-toggle:is(:hover, [aria-expanded="true"]) {
+        background: #f7f5fb;
+        border-color: #b7a2d4;
+    }
+
+    .mobile-menu-toggle:focus-visible {
+        outline: 2px solid #8862b6;
+        outline-offset: 2px;
+    }
+
+    .mobile-navigation:not([hidden]) {
+        display: grid;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 0.5rem 1.5rem 0.75rem;
+        background: #fff;
+        border-bottom: 1px solid #e3dced;
+        box-shadow: 0 8px 16px rgba(47, 35, 65, 0.08);
+    }
+
+    .mobile-navigation a {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 0.75rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
     .site-nav .site-nav-inner {
         box-sizing: border-box;
         min-height: 3.2rem;
@@ -973,6 +1028,7 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
 
     .profile-copy .profile-role {
         max-width: none;
+        margin-bottom: 0;
         font-size: clamp(0.7rem, 3.2vw, 0.82rem);
         line-height: 1.5;
         text-align: center;
@@ -983,7 +1039,7 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
     }
 
     .research-summary {
-        padding-top: 0.5rem;
+        padding-top: 0;
     }
 
     .research-summary .opportunity-note {
@@ -1012,24 +1068,50 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
     }
 
     .profile-social {
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        gap: clamp(0.35rem, 2.5vw, 1rem);
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(0.3rem, 1.5vw, 0.6rem);
         max-width: 26rem;
-        margin: 0.9rem auto 0;
-        font-size: clamp(0.68rem, 3.2vw, 0.85rem);
+        margin: 1rem auto 1.5rem;
+        font-size: clamp(0.65rem, 2.9vw, 0.8rem);
     }
 
-    .profile-social a {
-        gap: 0.2em;
-        white-space: nowrap;
-        flex-shrink: 0;
+    body#top .profile-social a[href] {
+        box-sizing: border-box;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.3rem;
+        min-width: 0;
         min-height: 2rem;
+        padding: 0.2rem 0.15rem;
+        border: 1px solid #d9dadd;
+        border-radius: 4px;
+        background: #ffffff;
+        color: #4b4c54;
+        line-height: 1.2;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+
+    body#top .profile-social a[href]:is(:hover, :focus-visible, :active) {
+        border: 1px solid #a8a7b2;
+        background: #f6f6f8;
+        color: #35333f;
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+    .profile-social a[href="https://github.com/mjmjeong"] {
+        display: none;
+    }
+
+    .opportunity-note .opportunity-cv {
+        display: none;
     }
 
     .profile-social .social-icon {
-        width: 1em;
-        height: 1em;
+        width: 1rem;
+        height: 1rem;
         flex-shrink: 0;
     }
 
@@ -1079,6 +1161,30 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
 }
 
 @media screen and (max-width: 480px) {
+    .main-column .papers {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .papers td.thumbs {
+        width: 40%;
+        padding: 10px 8px 10px 0;
+    }
+
+    .papers td.detail {
+        width: 60%;
+        padding: 10px 0 10px 4px;
+        font-size: 0.8rem;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+    }
+
+    .papers img.thumbs {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
     .news-section,
     .research-summary {
         padding-left: 0;
