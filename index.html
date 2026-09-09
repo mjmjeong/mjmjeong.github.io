@@ -33,6 +33,9 @@
     <button class="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-navigation">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
+    <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode">
+      <span class="theme-label">Light</span><span class="theme-track" aria-hidden="true"></span>
+    </button>
   </div>
   <div class="mobile-navigation" id="mobile-navigation" hidden>
     <a href="#about">About</a>
@@ -139,9 +142,9 @@
 </section>
 
 <section class="news-section" aria-labelledby="news-title">
-  <h2 id="news-title">News</h2>
+  <h2 id="news-title">News<span class="news-icon" aria-hidden="true">😀</span></h2>
   <ul class="news-list">
-    <li><time datetime="2026-09">Sep 2026</time><span>Selected as a <strong>Rising Star</strong> at the <strong>Deans’ Forum Women in Engineering Workshop</strong>.</span></li>
+    <li><time datetime="2026-09">Sep 2026</time><span>Selected as a <strong>Rising Star</strong> at the <a href="https://risingstarsasia.org/index.php" target="_blank" rel="noopener noreferrer">Deans’ Forum Women in Engineering Workshop</a>.</span></li>
     <li><time datetime="2026-09">Sep 2026</time><span>Selected as a <strong>Youlchon AI Star</strong>.</span></li>
     <li><time datetime="2026-06">Jun 2026</time><span><strong>Two first-author papers</strong> accepted to <strong>CVPR 2026</strong>.</span></li>
   </ul>
@@ -326,5 +329,6 @@
 </div>
 <script src="js/overview-scale.js" defer></script>
 <script src="js/mobile-navigation.js" defer></script>
+<script src="js/navigation-theme.js" defer></script>
 </body>
 </html>
