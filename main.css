@@ -150,8 +150,7 @@ html {
     top: 0;
     z-index: 10;
     border-bottom: 1px solid #e3e2eb;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
+    background: #ffffff;
 }
 
 .site-nav-inner {
@@ -191,6 +190,22 @@ html {
 
 .site-nav-links a {
     color: #41414c;
+}
+
+body#top .site-nav a[href] {
+    color: #41414c;
+}
+
+body#top .site-nav a.site-brand {
+    color: #202027;
+}
+
+body#top .site-nav a[href]:is(:hover, :focus-visible) {
+    color: var(--research-accent-hover);
+    background-color: rgba(166, 119, 235, 0.08);
+    box-shadow: none;
+    text-shadow: none;
+    text-decoration-color: #c7b5e4;
 }
 
 .site-brand:hover,
@@ -866,51 +881,27 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
         font-weight: 600;
         line-height: 1.3;
         white-space: nowrap;
-        text-shadow: 0 0 8px rgba(166, 117, 242, 0.3),
-                     0 0 18px rgba(166, 117, 242, 0.18);
+        text-shadow: none;
     }
 
-    .profile-intro {
-        grid-template-columns: 180px minmax(0, 1fr);
-        gap: 2rem;
-        margin-top: 2.5rem;
-        padding-bottom: 2rem;
-    }
 
-    .profile-name {
-        font-size: 2.2rem;
-    }
-
-}
-
-@media screen and (min-width: 601px) and (max-width: 799px) {
-    #layout-content .profile-copy {
-        padding-top: 0;
-    }
-
-    #layout-content .profile-copy .profile-name {
-        margin-top: 0;
-    }
-
-    .research-period {
-        gap: 0.55em;
-        padding-bottom: 0.15em;
-    }
-
-    .research-period-content h3 {
-        margin-bottom: 0.2em;
-    }
-
-    .research-period-content li {
-        margin: 0.08em 0;
-        line-height: 1.32;
-    }
 }
 
 .research-overview-panel.is-scaled {
     box-sizing: content-box;
     height: var(--overview-height);
     overflow: hidden;
+}
+
+#layout-content .research-overview-title {
+    margin: 0;
+    padding: 0 0 14px 20px;
+    border: 0;
+    color: #4b4b56;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.4;
 }
 
 .is-scaled .research-overview-scale {
@@ -932,6 +923,31 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
         padding: 12px 12px 12px 4px;
     }
 
+    .is-scaled .research-period-content li {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        column-gap: 0.3em;
+        white-space: normal;
+    }
+
+    .research-paper-meta {
+        white-space: nowrap;
+    }
+
+    .research-paper-description {
+        min-width: 0;
+    }
+
+    .is-measuring .research-paper-description {
+        white-space: nowrap;
+    }
+
+    #layout-content .research-overview-title {
+        padding-left: 8px;
+        padding-bottom: 10px;
+        font-size: 0.78rem;
+    }
+
     .is-scaled .research-timeline {
         margin-left: 0;
         border-left-width: 2px;
@@ -949,13 +965,14 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
 
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 799px) {
     .main-column,
     .main-column .papers {
         font-size: 0.92rem;
     }
 
     .profile-copy .profile-role {
+        max-width: none;
         font-size: 0.82rem;
         line-height: 1.5;
         text-align: center;
@@ -1035,6 +1052,11 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
         grid-template-columns: 1fr;
         gap: 1.75rem;
         margin-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    #layout-content .profile-copy {
+        padding-top: 0;
     }
 
     .profile-side {
