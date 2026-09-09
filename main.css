@@ -973,13 +973,17 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
 
     .profile-copy .profile-role {
         max-width: none;
-        font-size: 0.82rem;
+        font-size: clamp(0.7rem, 3.2vw, 0.82rem);
         line-height: 1.5;
         text-align: center;
     }
 
     .research-summary .research-statement {
         font-size: 0.95rem;
+    }
+
+    .research-summary {
+        padding-top: 0.5rem;
     }
 
     .research-summary .opportunity-note {
@@ -1009,9 +1013,11 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
 
     .profile-social {
         flex-wrap: nowrap;
-        justify-content: center;
-        gap: 0.35rem;
-        font-size: clamp(0.76rem, 3.5vw, 0.9rem);
+        justify-content: space-between;
+        gap: clamp(0.35rem, 2.5vw, 1rem);
+        max-width: 26rem;
+        margin: 0.9rem auto 0;
+        font-size: clamp(0.68rem, 3.2vw, 0.85rem);
     }
 
     .profile-social a {
@@ -1052,7 +1058,7 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
         grid-template-columns: 1fr;
         gap: 1.75rem;
         margin-top: 2rem;
-        padding-bottom: 2rem;
+        padding-bottom: 0.75rem;
     }
 
     #layout-content .profile-copy {
@@ -1066,7 +1072,8 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
 
     #layout-content .profile-copy .profile-name {
         margin-top: 0;
-        font-size: 1.9rem;
+        font-size: clamp(1.25rem, 6.2vw, 1.8rem);
+        white-space: nowrap;
         text-align: center;
     }
 }
