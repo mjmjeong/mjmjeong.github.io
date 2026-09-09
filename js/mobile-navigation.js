@@ -1,4 +1,17 @@
 (() => {
+  const small = window.matchMedia('(min-width: 601px) and (max-width: 749px)');
+  const links = document.querySelector('.profile-social');
+  const profile = document.querySelector('.profile-copy');
+  const overview = document.querySelector('.research-overview-panel');
+  if (links && profile && overview) {
+    const positionLinks = () => {
+      if (small.matches) profile.append(links);
+      else overview.before(links);
+    };
+    positionLinks();
+    small.addEventListener('change', positionLinks);
+  }
+
   const button = document.querySelector('.mobile-menu-toggle');
   const menu = document.querySelector('#mobile-navigation');
   if (!button || !menu) return;
@@ -24,7 +37,7 @@
       setOpen(false);
     }
   });
-  window.matchMedia('(min-width: 800px)').addEventListener('change', (event) => {
+  window.matchMedia('(min-width: 601px)').addEventListener('change', (event) => {
     if (event.matches) setOpen(false);
   });
 })();

@@ -1,5 +1,5 @@
 (() => {
-  const mobile = window.matchMedia('(max-width: 799px)');
+  const mobile = window.matchMedia('(max-width: 749px)');
   const panels = [
     ['.research-overview-panel', '.research-overview-scale'],
   ];
