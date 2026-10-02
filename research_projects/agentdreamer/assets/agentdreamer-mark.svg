@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title desc">
+  <title id="title">AgentDreamer mark</title>
+  <desc id="desc">A small agent imagines a curved 3D motion path.</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 97h67" stroke="#dfe4e8" stroke-width="2"/>
+    <path d="M32 45c0-9 7-16 16-16h30c9 0 16 7 16 16v32c0 9-7 16-16 16H48c-9 0-16-7-16-16V45Z" fill="#f5f8fa" stroke="#33495e" stroke-width="3.5"/>
+    <path d="M63 29v-9" stroke="#33495e" stroke-width="3.5"/>
+    <circle cx="63" cy="15" r="5" fill="#fff" stroke="#33495e" stroke-width="3"/>
+    <path d="M32 59h-7m69 0h7" stroke="#33495e" stroke-width="3.5"/>
+    <circle cx="51" cy="58" r="3.3" fill="#33495e"/>
+    <circle cx="76" cy="58" r="3.3" fill="#33495e"/>
+    <path d="M54 74c5 5 14 5 19 0" stroke="#33495e" stroke-width="2.8"/>
+    <path d="M93 73c21 12 41 2 42-15 1-11-14-14-19-4-6 13 14 20 25 9" stroke="#b2463d" stroke-width="3.4"/>
+    <path d="M97 88c15 1 29-3 40-13" stroke="#d3a19b" stroke-width="2" stroke-dasharray="2 6"/>
+    <circle cx="141" cy="63" r="5" fill="#b2463d"/>
+    <circle cx="108" cy="82" r="3.5" fill="#fff" stroke="#b2463d" stroke-width="2"/>
+    <path d="m135 22 2.5 5.5 5.5 2.5-5.5 2.5-2.5 5.5-2.5-5.5-5.5-2.5 5.5-2.5z" fill="#f4d9a7" stroke="#b88643" stroke-width="1.4"/>
+  </g>
+</svg>
