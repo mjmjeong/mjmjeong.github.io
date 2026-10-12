@@ -1,0 +1,59 @@
+/* Small content additions to the published design; main.css owns the layout. */
+.papers .author-badge {
+    margin-left: 0.35em;
+    color: #a27027;
+    font-size: 0.85em;
+    font-weight: 700;
+    white-space: nowrap;
+}
+#layout-content :is(.desktop-profile-links, .profile-social) .contact-symbol {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    max-width: 16px;
+    margin: 0;
+    border-radius: 0;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+body[data-chrome-theme="dark"] .papers .author-badge { color: #e5bd7e; }
+@media (max-width: 749px) {
+    body#top #layout-content .profile-social {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        width: min(220px, 100%);
+        max-width: 220px;
+        gap: 4px;
+    }
+    body#top #layout-content .profile-social a[href] {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+    #layout-content .profile-social .contact-symbol { width: 28px; height: 28px; max-width: 100%; }
+    #layout-content .profile-social .contact-label { display: none; }
+}
+
+#layout-content .citation-count {
+    color: #b42318;
+    font-weight: 700;
+    white-space: nowrap;
+}
+body[data-chrome-theme="dark"] #layout-content .citation-count {
+    color: #ff9b96;
+}
+
+#layout-content .news-list { color: #3e3e48; }
+#layout-content .news-list time { color: #74747e; }
+#layout-content .news-list strong { color: #202027; }
+#layout-content .news-list :is(a, .news-accent) { color: var(--research-accent); }
+body[data-chrome-theme="dark"] #layout-content .news-list { color: #d9d3e4; }
+body[data-chrome-theme="dark"] #layout-content .news-list time { color: #bcb2ca; }
+body[data-chrome-theme="dark"] #layout-content .news-list strong { color: #f3eff9; }
+body[data-chrome-theme="dark"] #layout-content .news-list :is(a, .news-accent) { color: #beb0e9; }
