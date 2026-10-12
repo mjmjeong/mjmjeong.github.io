@@ -57,3 +57,12 @@ body[data-chrome-theme="dark"] #layout-content .news-list { color: #d9d3e4; }
 body[data-chrome-theme="dark"] #layout-content .news-list time { color: #bcb2ca; }
 body[data-chrome-theme="dark"] #layout-content .news-list strong { color: #f3eff9; }
 body[data-chrome-theme="dark"] #layout-content .news-list :is(a, .news-accent) { color: #beb0e9; }
+
+/* Under-review status stays quieter than accepted venues in the Overview. */
+#layout-content .research-period-content a.under-review-link {
+    color: #7a7a83;
+    font-weight: 600;
+}
+body[data-chrome-theme="dark"] #layout-content .research-period-content a.under-review-link {
+    color: #aaa4b5;
+}
