@@ -1914,3 +1914,132 @@ body#top[data-chrome-theme="dark"] .mobile-menu-toggle {
         transition: none;
     }
 }
+
+.personal-life-section {
+    margin-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.personal-life-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 1.35rem;
+}
+
+#layout-content .personal-life-heading h2:first-child {
+    margin: 0 0 0.75rem;
+}
+
+.personal-life-heading p {
+    max-width: 44rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.personal-life-controls {
+    display: flex;
+    flex: none;
+    gap: 0.5rem;
+}
+
+.personal-life-arrow {
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--chrome-border);
+    border-radius: 50%;
+    background: var(--chrome-background);
+    color: var(--chrome-heading);
+    font: inherit;
+    font-size: 1.15rem;
+    cursor: pointer;
+}
+
+.personal-life-arrow:hover:not(:disabled),
+.personal-life-arrow:focus-visible {
+    border-color: var(--chrome-accent);
+    color: var(--chrome-accent);
+}
+
+.personal-life-arrow:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.personal-life-gallery {
+    display: flex;
+    gap: 0.875rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    margin: 0;
+    padding: 0.125rem 0 0.875rem;
+    list-style: none;
+}
+
+.personal-life-gallery:focus-visible {
+    outline: 2px solid var(--chrome-accent);
+    outline-offset: 3px;
+}
+
+.personal-life-gallery li {
+    flex: 0 0 clamp(175px, 24vw, 220px);
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: 0.6rem;
+    scroll-snap-align: start;
+}
+
+.personal-life-gallery img,
+.personal-life-gallery video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+}
+
+.personal-life-gallery video {
+    background: #141414;
+}
+
+.personal-life-video {
+    position: relative;
+}
+
+.personal-life-video-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 0.35rem;
+    background: rgba(17, 24, 39, 0.78);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 600px) {
+    .personal-life-section {
+        margin-top: 3.25rem;
+        padding-bottom: 3rem;
+    }
+
+    .personal-life-heading {
+        align-items: start;
+    }
+
+    .personal-life-controls {
+        margin-top: 0.1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .personal-life-gallery {
+        scroll-behavior: auto;
+    }
+}

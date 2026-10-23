@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="main.css?v=20260909-9" type="text/css" />
+<link rel="stylesheet" href="main.css?v=20261023-personal-gallery" type="text/css" />
 <link rel="stylesheet" href="publications.css?v=20261012-title-contrast" type="text/css">
 <link rel="stylesheet" href="homepage-adjustments.css?v=20261012-review-tone" type="text/css">
 <title>Mijeong Kim</title>
@@ -401,13 +401,29 @@
 </ul>
 
 <section class="personal-life-section" aria-labelledby="personal-life">
-  <h2 id="personal-life">Personal Life</h2>
-  <p>Outside of research, I enjoy working out and hiking.</p>
+  <div class="personal-life-heading">
+    <div>
+      <h2 id="personal-life">Personal Life</h2>
+      <p>Outside of research, I enjoy working out and hiking. I sometimes go on night hikes with friends to enjoy the city lights. During my internship in the UK, I went hiking in Sevenoaks with a fellow intern, and the views were beautiful!</p>
+    </div>
+    <div class="personal-life-controls" aria-label="Gallery controls">
+      <button type="button" class="personal-life-arrow" data-gallery-direction="previous" aria-label="Previous gallery item" aria-controls="personal-life-gallery">←</button>
+      <button type="button" class="personal-life-arrow" data-gallery-direction="next" aria-label="Next gallery item" aria-controls="personal-life-gallery">→</button>
+    </div>
+  </div>
+  <ul class="personal-life-gallery" id="personal-life-gallery" tabindex="0" aria-label="Personal life photo and video gallery">
+    <li><img src="personal_life/IMG_8026.jpg" width="1179" height="1921" loading="lazy" decoding="async" alt="At the Yongmasan summit after a hike"></li>
+    <li><img src="personal_life/IMG_8027.jpg" width="1179" height="1859" loading="lazy" decoding="async" alt="At the gym after a workout"></li>
+    <li><img src="personal_life/IMG_8028.jpg" width="1179" height="1901" loading="lazy" decoding="async" alt="Walking along an autumn forest trail"></li>
+    <li><img src="personal_life/IMG_8025.jpg" width="1179" height="1893" loading="lazy" decoding="async" alt="Looking out over the hills on a sunny hike"></li>
+    <li class="personal-life-video"><video controls playsinline preload="metadata" poster="personal_life/IMG_5444.jpg" aria-label="Video from a night hike with friends"><source src="personal_life/night-hike.mp4" type="video/mp4">Your browser does not support this video.</video><span class="personal-life-video-badge" aria-hidden="true">▶ Video</span></li>
+  </ul>
 </section>
 </main>
 </div>
 <script src="js/overview-scale.js" defer></script>
 <script src="js/mobile-navigation.js?v=20261012-original" defer></script>
 <script src="js/navigation-theme.js?v=20260910-2" defer></script>
+<script src="js/personal-life-gallery.js?v=20261023" defer></script>
 </body>
 </html>
