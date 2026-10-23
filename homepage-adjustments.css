@@ -1,4 +1,8 @@
 /* Small content additions to the published design; main.css owns the layout. */
+@media (max-width: 749px) {
+    .research-summary .undergraduate-background { display: none; }
+}
+
 .papers .author-badge {
     margin-left: 0.35em;
     color: #a27027;
