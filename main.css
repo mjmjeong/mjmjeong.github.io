@@ -998,6 +998,18 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
     margin: 0;
 }
 
+.education-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+}
+
+.education-heading .education-place {
+    text-align: right;
+}
+
 .education-degree {
     color: #202027;
     font-weight: 700;
@@ -1011,6 +1023,21 @@ a[href="files/CV_MijeongKim_SNU_ComputerVision.pdf"]:focus-visible {
     margin-top: 0.25rem !important;
     color: #5e5e69;
     font-size: 0.92rem;
+}
+
+.education-detail-indented {
+    padding-left: 1rem;
+    color: var(--research-accent);
+}
+
+.education-primary-detail {
+    color: #202027;
+}
+
+@media screen and (max-width: 600px) {
+    .education-heading .education-place {
+        text-align: left;
+    }
 }
 
 @media screen and (max-width: 749px) {
@@ -1856,6 +1883,14 @@ body#top[data-chrome-theme="dark"] #layout-content :is(.research-statement, .opp
 
 body#top[data-chrome-theme="dark"] #layout-content :is(.profile-role, .experience-role, .experience-date, .education-place, .education-detail, .research-overview-title) {
     color: #bcb2ca;
+}
+
+body#top[data-chrome-theme="dark"] #layout-content .education-detail-indented {
+    color: var(--research-accent);
+}
+
+body#top[data-chrome-theme="dark"] #layout-content .education-primary-detail {
+    color: #f3eff9;
 }
 
 body#top[data-chrome-theme="dark"] #layout-content .experience-heading h3 {
