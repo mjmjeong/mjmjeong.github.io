@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="canonical" href="https://mjmjeong.github.io/project/PhysGaia/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhysGaia - A Physics-Aware Benchmark</title>
+    <link rel="icon" type="image/png" href="./images/sprout.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/placeholders.css">
+    <meta name="description" content="PhysGaia: A Physics-Aware Benchmark with Multi-Body Interactions for Dynamic Novel View Synthesis">
+    <!-- Open Graph & Twitter Card for SEO/social sharing -->
+    <meta property="og:title" content="PhysGaia: A Physics-Aware Benchmark with Multi-Body Interactions for Dynamic Novel View Synthesis">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mjmjeong.github.io/project/PhysGaia">
+    <meta property="og:image" content="https://mjmjeong.github.io/project/PhysGaia/images/twitter_card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PhysGaia:Physics-Aware Benchmark with Multi-Body Interactions for Dynamic Novel View Synthesis">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://mjmjeong.github.io/project/PhysGaia/images/twitter_card.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMQC99YPGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WMQC99YPGB');
+    </script>
+</head>
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav" aria-label="Section Navigation">
+        <a href="#" class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><span role="img" aria-label="plant sprout">🌱</span>PhysGaia</a>
+        <div class="nav-links">
+            <a href="#abstract" class="nav-link">Abstract</a>
+            <a href="#overview" class="nav-link">Research</a>
+            <a href="#materials" class="nav-link">Materials</a>
+            <a href="#dataset" class="nav-link">Dataset</a>
+            <a href="#bibtex" class="nav-link">Citation</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <ul>
+          <li><a href="index.html" class="nav-link home">🏠 Home</a></li>
+          <li><a href="liquid.html" class="nav-link water">💧 Liquid</a></li>
+          <li><a href="gas.html" class="nav-link fire">🔥 Gas</a></li>
+          <li><a href="viscoelastic.html" class="nav-link earth">🌍 Viscoelastic</a></li>
+          <li><a href="textile.html" class="nav-link wind">👗 Textile</a></li>
+        </ul>
+      </nav>
+      <main class="home-container">
+        <header class="hero-section">
+            <h1 class="title"><span role="img" aria-label="plant sprout">🌱</span> <span class="highlight-gradient">PhysGaia</span>: A Physics-Aware Benchmark of Multi-Body Interactions<br>for Dynamic Novel View Synthesis</h1>
+            <!-- <h2 class="subtitle">A Physics-Aware Benchmark of Multi-Body Interactions<br>for Dynamic Novel View Synthesis</h2>
+            --> 
+            <div class="author-block">
+            <div class="authors"><a href="https://mjmjeong.github.io" target="_blank" rel="noopener noreferrer">Mijeong Kim</a><sup>*</sup>, <a href="https://gunhee1113.github.io/" target="_blank" rel="noopener noreferrer">Gunhee Kim</a><sup>*</sup>, Jungyoon Choi, Wonjae Roh, <a href="https://cv.snu.ac.kr/index.php/bhhan" target="_blank" rel="noopener noreferrer">Bohyung Han</a></div>
+            <!-- <div class="affiliation">Seoul National University</div> --> 
+            <!--<div class="equal-contrib">*Equal Contributions</div>--> 
+            <h2 class="conference">CVPR 2026</h2>
+        </div>
+
+            <!-- Teaser Video/Image Container -->
+            <div class="links-section">
+                <a href="https://arxiv.org/abs/2506.02794" class="link-button" target="_blank" rel="noopener noreferrer">
+                    <img src="images/arxiv-logomark-small.svg" alt="arXiv" class="icon" style="height:1.5em;vertical-align:middle;margin-right:0.3em;">
+                    arXiv
+                  </a>  
+                <a href="https://github.com/mjmjeong/PhysGaia" class="link-button" target="_blank" rel="noopener noreferrer">
+                  <img src="images/github-mark-white.svg" alt="GitHub" class="icon" style="height:1.7em;vertical-align:middle;margin-right:0.3em;">
+                  GitHub
+                </a>
+                <a href="https://huggingface.co/datasets/mijeongkim/PhysGaia/tree/main" class="link-button" target="_blank" rel="noopener noreferrer">
+                    <img src="images/hf-logo.svg" alt="Hugging Face" class="icon" style="height:2em;vertical-align:middle;margin-right:0.3em;">
+                    Dataset
+                </a>
+                <a href="#" class="link-button"><i class="icon">📝</i> Cite</a>
+            </div>
+            <div class="teaser-container">
+                <div class="teaser-item">
+                    <img src="videos/gt_gif/hanok_cam2.gif" loading="lazy" alt="Example 1">
+                </div>
+                <div class="teaser-item">
+                    <img src="videos/gt_gif/jelly_party_cam1.gif" loading="lazy" alt="Example 2">
+                </div>
+                <div class="teaser-item">
+                    <img src="videos/gt_gif/pisa_cam1.gif" loading="lazy" alt="Example 3">
+                </div>
+                <div class="teaser-item">
+                    <img src="videos/gt_gif/lucy_cam1.gif" loading="lazy" alt="Example 4">
+                </div>
+                <div class="teaser-item">
+                    <img src="videos/gt_gif/cereal_cam2.gif" loading="lazy" alt="Example 5">
+                </div>
+                <div class="teaser-item">
+                    <img src="videos/gt_gif/pancake_cam1.gif" loading="lazy" alt="Example 6">
+                </div>
+                <div class="teaser-item">
+                    <img src="videos/gt_gif/box-smoke_cam1.gif" loading="lazy" alt="Example 7">
+                </div>
+                <div class="teaser-item">
+                    <img src="videos/gt_gif/basin_cam1.gif" loading="lazy" alt="Example 8">
+                </div>
+            </div>
+        </header>
+
+        <!-- Abstract Section -->
+        <section id="abstract" class="section abstract-section animate-in">
+            <h2 class="tldr">
+                <strong>
+                  TL;DR: <span class="highlight-gradient">PhysGaia</span> is the first physics-aware dataset <span class="highlight-gradient">for DyNVS</span>
+                  <br>
+                  focused on <span class="highlight-gradient">physical realism</span>, not just photorealism. 
+                </strong>
+            </h2>
+            <h2 class="section-title">Abstract</h2>
+            <p>
+                We introduce PhysGaia, a novel physics-aware benchmark specifically designed for
+                Dynamic Novel View Synthesis (DyNVS), encompassing both structured objects
+                and unstructured physical phenomena. Unlike existing datasets that primarily focus
+                on photorealistic reconstruction, PhysGaia is created to actively support physics-aware
+                dynamic scene modeling. 
+                Our dataset provides <span class="strong-blue">complex dynamic scenarios
+                with rich interactions among multiple bodies</span>, where they realistically collide with
+                each other and exchange forces. Furthermore, it contains <span class="strong-blue"> a diverse range of physical
+                materials</span>, such as liquid, gas, textile, and viscoelastic substances, which moves
+                beyond the rigid bodies prevalent in existing datasets. All scenes in PhysGaia are
+                faithfully generated to <span class="strong-blue">strictly adhere to physical laws</span>, leveraging carefully selected
+                material-specific physics solvers. To enable quantitative evaluation of physical
+                modeling, our dataset provides <span class="strong-blue">essential ground-truth physics information</span>, including 3D
+                particle trajectories and physics parameters, e.g., viscosity. 
+                To facilitate research adoption, we also provide essential <span class="strong-blue">integration pipelines for using state-of-the-art 
+                4D Gaussian Splatting models</span> with our dataset and report theirs results. 
+                By addressing the critical lack of datasets for physics-aware modeling, PhysGaia will
+                significantly advance research in dynamic view synthesis, physics-based scene
+                understanding, and deep learning models integrated with physical simulation 
+                ultimately enabling more faithful reconstruction and interpretation of complex
+                dynamic scenes.
+            </p>
+        </section>
+
+        <section id="overview" class="overview-section section animate-in">
+            <h2>🔥 Ideal for "Next" Research</h2>
+            <ul>
+                <li><strong>🧠 Physical reasoning in dynamic scenes</strong>
+                    <ul>
+                        <li>Offering ground-truth physics parameters for precise evaluation of inverse physics estimation</li>
+                        <li>Offering ground-truth 3D trajectories for assessing actual motion beyond photorealism</li>
+                    </ul>
+                </li>
+                <li><strong>🤝 Multi-body physical interaction modeling</strong></li>
+                <li><strong>🧪 Material-specific physics solver integration</strong></li>
+                <li><strong>🧬 Compatibility with existing DyNVS models</strong></li>
+                    <ul>
+                        <li> Check implementation code of recent methods on PhysGaia: 
+                            <a href="https://github.com/mjmjeong/PhysGaia/tree/deformable" target="_blank">D-3DGS</a>,
+                            <a href="https://github.com/mjmjeong/PhysGaia/tree/4DGS_hex" target="_blank">4DGS</a>,
+                            <a href="https://github.com/mjmjeong/PhysGaia/tree/spacetime" target="_blank">STG</a>,
+                            <a href="https://github.com/mjmjeong/PhysGaia/tree/SOM" target="_blank">SOM</a>
+                    </ul>
+            </ul>
+
+            <!-- Method Diagram -->
+            <div class="method-diagram">
+                <div class="method-image-item">
+                    <div class="method-image-wrapper">
+                        <img src="videos/baseline_gif/gt.gif" loading="lazy" alt="Ground Truth">
+                    </div>
+                    <p class="method-image-caption">Ground Truth</p>
+                </div>
+                <div class="method-image-item">
+                    <div class="method-image-wrapper">
+                        <img src="videos/baseline_gif/deform.gif" loading="lazy" alt="D-3DGS">
+                    </div>
+                    <p class="method-image-caption">D-3DGS (CVPR24) </p>
+                </div>
+                <div class="method-image-item">
+                    <div class="method-image-wrapper">
+                        <img src="videos/baseline_gif/4dgs.gif" loading="lazy" alt="4DGS">
+                    </div>
+                    <p class="method-image-caption">4DGS (CVPR24)</p>
+                </div>
+                <div class="method-image-item">
+                    <div class="method-image-wrapper">
+                        <img src="videos/baseline_gif/STG.gif" loading="lazy" alt="STG">
+                    </div>
+                    <p class="method-image-caption">STG (CVPR24)</p>
+                </div>
+                <div class="method-image-item">
+                    <div class="method-image-wrapper">
+                        <img src="videos/baseline_gif/SOM.gif" loading="lazy" alt="SOM">
+                    </div>
+                    <p class="method-image-caption">SOM (ICCV25)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="materials" class="section animate-in">
+            <h2 class="section-title">Material Types</h2>
+            <p>PhysGaia features four distinct material types, each with unique physical properties and behaviors:</p>
+            
+            <nav class="element-cards" aria-label="Material Types">
+              <a href="liquid.html" class="element-card water">
+                <div class="card-content">
+                  <span class="element-icon" aria-label="liquid">💧</span>
+                  <h3>Liquid</h3>
+                </div>
+              </a>
+              <a href="gas.html" class="element-card fire">
+                <div class="card-content">
+                  <span class="element-icon" aria-label="fire">🔥</span>
+                  <h3>Gas</h3>
+                </div>
+              </a>
+              <a href="viscoelastic.html" class="element-card earth">
+                <div class="card-content">
+                  <span class="element-icon" aria-label="viscoelastic">🌍</span>
+                  <h3>Viscoelastic</h3>
+                </div>
+              </a>
+              <a href="textile.html" class="element-card wind">
+                <div class="card-content">
+                  <span class="element-icon" aria-label="textile">👗</span>
+                  <h3>Textile</h3>
+                </div>
+              </a>
+            </nav>
+        </section>
+
+        <!-- Dataset Section -->
+        <section id="dataset" class="dataset-section section animate-in">
+            <h2 class="section-title">📊 Dataset Overview</h2>
+            
+            <!-- Dataset Statistics -->
+            <div class="dataset-stats">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Material Types</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">Scenes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4-6</div>
+                        <div class="stat-label">Camera Views</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">240</div>
+                        <div class="stat-label">Frames</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Organization -->
+            <div class="dataset-info">
+                <h3>📁 Data Structure</h3>
+                <div class="code-block">
+                    <pre><code>{material_type}_{scene_name}.zip
+│
+├── render/                              # Rendered images
+│   ├── train/                           # Images for training
+│   └── test/                            # Images for evaluation
+│
+├── point_cloud.ply                      # COLMAP initialization (PatchMatch & downsampling)
+├── camera_info_test.json                # Monocular camera info for test
+├── camera_info_train_mono.json          # Monocular camera info for training
+├── camera_info_train_multi.json         # Multi-view camera info for training
+│
+├── {scene_name}.hipnc                   # Houdini source file (simulation or scene setup)
+├── particles/                           # Ground-truth trajectories
+</code></pre>
+                </div>
+
+                <h3>📹 Camera Setup</h3>
+                <div class="view-setup">
+                    <div class="view-info">
+                        <h4>Camera Configuration</h4>
+                        <ul>
+                            <li><strong>4 to 6 viewpoints</strong> per scene</li>
+                            <li><strong>Spiral camera trajectory</strong> around physics interactions</li>
+                            <li><strong>Multiple Settings</strong> for both monocular and multi-view</li>
+                            <li><strong>240 frames</strong> capturing complete dynamics</li>
+                        </ul>
+                    </div>
+                    <div class="resolution-info">
+                        <h4>Technical Specifications</h4>
+                        <ul>
+                            <li><strong>Resolution:</strong> 720×960 pixels</li>
+                            <li><strong>Format:</strong> PNG images</li>
+                            <li><strong>Frame Rate:</strong> 24 FPS</li>
+                            <li><strong>Tool:</strong> Houdini 20.5</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bibtex" class="section animate-in">
+            <h2 class="section-title">Citation</h2>
+            <div class="citation-section">
+                <h3>BibTeX</h3>
+                <div class="bibtex-container">
+                    <pre><code>
+                        @inproceedings{kim2026physgaia,
+                            title={PhysGaia:Physics-Aware Benchmark with Multi-Body Interactions for Dynamic Novel View Synthesis},
+                            author={Kim, Mijeong and Kim, Gunhee and Choi, Jungyoon and Roh, Wonjae and Han, Bohyung},
+                            booktitle={CVPR},
+                            year={2026}
+                          }                        
+                    </code></pre>
+                </div>
+                <button class="copy-button" onclick="copyBibTeX()">Copy BibTeX</button>
+            </div>
+        </section>
+
+        <section id="contact" class="footer-section section animate-in">
+            <h2>Contact</h2>
+            <p><strong>Authors:</strong> <a href="https://mjmjeong.github.io">Mijeong Kim</a> & <a href="https://gunhee1113.github.io/">Gunhee Kim</a></p>
+            <p><strong>Email:</strong> <a href="mailto:mijeong.kim@snu.ac.kr">mijeong.kim@snu.ac.kr</a> & <a href="mailto:gunhee2001@snu.ac.kr">gunhee2001@snu.ac.kr</a></p>
+
+            <h2>License</h2>
+            <p>This project is released under the Creative Commons Attribution-NonCommercial 4.0 license.</p>
+        </section>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/animations.js"></script>
+    <script>
+        function copyBibTeX() {
+            const bibtex = `@inproceedings{kim2026physgaia,
+                            title={PhysGaia:Physics-Aware Benchmark with Multi-Body Interactions for Dynamic Novel View Synthesis},
+                            author={Kim, Mijeong and Kim, Gunhee and Choi, Jungyoon and Roh, Wonjae and Han, Bohyung},
+                            booktitle={CVPR},
+                            year={2026}
+                          } `; // Replace with actual BibTeX entry
+            navigator.clipboard.writeText(bibtex).then(() => {
+                alert('BibTeX copied to clipboard!');
+            });
+        }
+    </script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="canonical" href="https://mjmjeong.github.io/project/GP4DGS/">
+  <meta charset="utf-8">
+  <meta name="description" content="GP-4DGS: Probabilistic 4D Gaussian Splatting from Monocular Video via Variational Gaussian Processes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GP-4DGS — CVPR 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <style>
+    :root {
+      --ink:   #0f1117;
+      --ink2:  #3a3d4a;
+      --ink3:  #6b7080;
+      --paper: #fafaf8;
+      --warm:  #f5f2ec;
+      --rule:  #e4e2dc;
+      --blue:  #2552e4;
+      --coral: #e84c3d;
+      --gold:  #b8922e;
+      --green: #2e9e72;
+      --sh:    0 2px 20px rgba(0,0,0,.07);
+      --r:     10px;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--paper); color:var(--ink); line-height:1.75; overflow-x:hidden; font-size:16px; }
+
+    /* ── Nav ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.85rem 2.4rem;
+      background:rgba(250,250,248,.92); backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--rule);
+    }
+    .brand { font-family:'DM Serif Display',serif; font-size:1.1rem; color:var(--ink); text-decoration:none; }
+    .nav-links { display:flex; gap:1.6rem; list-style:none; }
+    .nav-links a { font-size:.75rem; font-weight:600; color:var(--ink3); text-decoration:none; letter-spacing:.08em; text-transform:uppercase; transition:color .18s; }
+    .nav-links a:hover { color:var(--blue); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height:100vh;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:7rem 1.5rem 4rem; text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(ellipse 55% 55% at 18% 28%, rgba(37,82,228,.07) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 82% 72%, rgba(184,146,46,.09) 0%, transparent 70%);
+    }
+    .hero::after {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background-image:
+        linear-gradient(rgba(37,82,228,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,82,228,.03) 1px, transparent 1px);
+      background-size:64px 64px;
+    }
+
+    .venue-pill {
+      display:inline-flex; align-items:center; gap:7px;
+      background:var(--blue); color:#fff;
+      font-size:.88rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      padding:8px 22px; border-radius:100px;
+      margin-bottom:1.5rem; position:relative; z-index:1;
+      animation:up .55s ease both;
+    }
+
+    .hero-title {
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(1.55rem,3vw,2.5rem);
+      line-height:1.25; color:var(--ink); max-width:900px; letter-spacing:-.02em;
+      position:relative; z-index:1;
+      animation:up .65s .08s ease both;
+    }
+    .hero-title em { font-style:italic; color:var(--blue); }
+
+    .authors-block {
+      margin-top:1.5rem; font-size:.95rem; color:var(--ink2); line-height:2;
+      position:relative; z-index:1;
+      animation:up .65s .22s ease both;
+    }
+    .authors-block a { color:var(--blue); text-decoration:none; font-weight:500; }
+    .authors-block a:hover { text-decoration:underline; }
+    .affil { font-size:.78rem; color:var(--ink3); margin-top:.15rem; }
+
+    .contrib-chips {
+      display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;
+      margin-top:1.4rem; position:relative; z-index:1;
+      animation:up .65s .28s ease both;
+    }
+    .chip {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:.75rem; font-weight:600; letter-spacing:.02em;
+      padding:5px 13px; border-radius:6px; border:1.5px solid transparent;
+    }
+    .chip-blue  { background:rgba(37,82,228,.08);  color:var(--blue);  border-color:rgba(37,82,228,.2); }
+    .chip-coral { background:rgba(232,76,61,.08);   color:var(--coral); border-color:rgba(232,76,61,.2); }
+    .chip-gold  { background:rgba(184,146,46,.1);   color:var(--gold);  border-color:rgba(184,146,46,.25); }
+    .chip-green { background:rgba(46,158,114,.09);  color:var(--green); border-color:rgba(46,158,114,.22); }
+
+    .btn-row {
+      display:flex; flex-wrap:wrap; gap:.55rem; justify-content:center;
+      margin-top:1.6rem; position:relative; z-index:1;
+      animation:up .65s .34s ease both;
+    }
+    .btn {
+      display:inline-flex; align-items:center; gap:7px;
+      padding:9px 20px; border-radius:8px;
+      font-size:.8rem; font-weight:600;
+      text-decoration:none; transition:transform .15s, box-shadow .15s;
+    }
+    .btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.13); }
+    .btn-dark    { background:var(--ink); color:#fff; }
+    .btn-outline { background:#fff; color:var(--ink); border:1.5px solid var(--rule); }
+
+    .teaser-wrap {
+      max-width:900px; margin:2.8rem auto 0;
+      position:relative; z-index:1;
+      animation:up .8s .42s ease both;
+    }
+    .fig-card {
+      background:#fff; border:1.5px solid var(--rule);
+      border-radius:16px; padding:2rem;
+      box-shadow:var(--sh); position:relative; overflow:hidden;
+    }
+    .fig-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg, var(--blue), var(--gold));
+    }
+    .fig-cap {
+      text-align:center; font-size:.85rem; color:var(--ink2);
+      margin-top:.9rem; line-height:1.65;
+    }
+    .fig-cap strong { color:var(--ink); }
+
+    /* ── Sections ── */
+    section { padding:5rem 1.5rem; }
+    section.alt { background:var(--warm); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+    .inner { max-width:920px; margin:0 auto; }
+
+    .sec-head { display:flex; align-items:center; gap:.9rem; margin-bottom:2rem; }
+    .sec-num  { font-family:'DM Serif Display',serif; font-size:3rem; color:var(--rule); line-height:1; flex-shrink:0; user-select:none; }
+    .sec-label { font-family:'DM Serif Display',serif; font-size:1.8rem; color:var(--ink); line-height:1.15; letter-spacing:-.02em; }
+    .sec-label em { font-style:italic; color:var(--blue); }
+
+    hr.div { border:none; border-top:1px solid var(--rule); margin:3rem 0; }
+
+    /* ── Abstract ── */
+    .abstract-text {
+      border-left:3px solid var(--blue);
+      padding-left:1.6rem;
+      font-size:1.02rem; line-height:2; color:var(--ink2);
+    }
+    .abstract-text strong { color:var(--ink); font-weight:600; }
+    .abstract-text p + p { margin-top:1.1rem; }
+
+    /* ── Key Contributions ── */
+    .contrib-list { display:flex; flex-direction:column; gap:.75rem; margin-top:1.4rem; }
+    .contrib-item {
+      display:flex; align-items:flex-start; gap:1.1rem;
+      padding:1.2rem 1.4rem;
+      border-left:3px solid var(--rule);
+      background:#fff; border-radius:0 8px 8px 0;
+      box-shadow:var(--sh);
+    }
+    .contrib-item:nth-child(1) { border-color:var(--blue); }
+    .contrib-item:nth-child(2) { border-color:var(--gold); }
+    .contrib-item:nth-child(3) { border-color:var(--green); }
+    .contrib-icon  { font-size:1.3rem; flex-shrink:0; margin-top:.15rem; }
+    .contrib-title { font-weight:700; font-size:1rem; color:var(--ink); margin-bottom:.3rem; }
+    .contrib-desc  { font-size:.9rem; color:var(--ink2); line-height:1.75; }
+
+    /* ── Method rows ── */
+    .method-rows { display:flex; flex-direction:column; gap:.75rem; margin-top:1.6rem; }
+    .mrow {
+      display:grid; grid-template-columns:2.4rem 1fr;
+      gap:1rem; align-items:start;
+      border-left:3px solid var(--rule);
+      padding:.9rem 1rem;
+    }
+    .mrow:nth-child(1) { border-color:var(--blue); }
+    .mrow:nth-child(2) { border-color:var(--gold); }
+    .mrow:nth-child(3) { border-color:var(--coral); }
+    .mrow-num { font-family:'DM Serif Display',serif; font-size:1.4rem; line-height:1; color:var(--rule); }
+    .mrow-title { font-weight:700; font-size:1rem; color:var(--ink); margin-bottom:.3rem; }
+    .mtag {
+      display:inline-block;
+      font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      padding:2px 8px; border-radius:4px; color:#fff; margin-left:.5rem;
+      vertical-align:middle; position:relative; top:-1px;
+    }
+    .mtag-blue  { background:var(--blue); }
+    .mtag-gold  { background:var(--gold); }
+    .mtag-coral { background:var(--coral); }
+    .mrow-desc { font-size:.9rem; color:var(--ink2); line-height:1.75; }
+    .mrow-desc strong { color:var(--ink); font-weight:600; }
+    .eq {
+      display:inline-block;
+      font-family:'SFMono-Regular',Consolas,monospace;
+      font-size:.78rem; color:var(--ink2);
+      background:var(--warm); border:1px solid var(--rule);
+      border-radius:5px; padding:1px 8px; margin:0 2px;
+    }
+
+    /* ── Capability sub-cards (inside contribution item) ── */
+    .cap-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:.65rem;
+      margin-top:1rem;
+    }
+    .cap-card {
+      background:var(--warm); border:1px solid var(--rule);
+      border-radius:8px; padding:.85rem 1rem;
+    }
+    .cap-icon  { font-size:1.15rem; display:block; margin-bottom:.35rem; }
+    .cap-title { font-weight:700; color:var(--ink); margin-bottom:.25rem; font-size:.83rem; }
+    .cap-desc  { color:var(--ink2); line-height:1.6; font-size:.8rem; }
+
+    /* ── GP Advantages cards ── */
+    .adv-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;
+      margin-top:1.4rem;
+    }
+    .adv-card {
+      background:#fff; border:1.5px solid var(--rule);
+      border-radius:12px; padding:1.4rem 1.2rem;
+      box-shadow:var(--sh); text-align:center;
+      transition:transform .18s, box-shadow .18s;
+    }
+    .adv-card:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,.1); }
+    .adv-icon  { font-size:1.7rem; margin-bottom:.6rem; }
+    .adv-title { font-weight:700; font-size:.88rem; color:var(--ink); margin-bottom:.4rem; }
+    .adv-desc  { font-size:.78rem; color:var(--ink3); line-height:1.6; }
+
+    /* ── Tables ── */
+    .table-wrap { overflow-x:auto; margin:.4rem 0; }
+    table { width:100%; border-collapse:collapse; font-size:.87rem; }
+    thead th {
+      background:var(--ink); color:#fff;
+      padding:11px 14px; text-align:center;
+      font-weight:600; font-size:.77rem; letter-spacing:.05em; text-transform:uppercase; white-space:nowrap;
+    }
+    thead th:first-child { text-align:left; border-radius:8px 0 0 0; }
+    thead th:last-child  { border-radius:0 8px 0 0; }
+    tbody td { padding:10px 14px; text-align:center; border-bottom:1px solid var(--rule); color:var(--ink2); }
+    tbody td:first-child { text-align:left; color:var(--ink); font-weight:500; }
+    tbody tr:hover { background:#f3f6ff; }
+    tbody tr.hl { background:rgba(37,82,228,.05); }
+    tbody tr.hl td { font-weight:600; color:var(--ink); }
+    tbody tr.tbl-group td {
+      background:var(--warm);
+      font-weight:700; font-size:.76rem; color:var(--ink3);
+      text-transform:uppercase; letter-spacing:.07em;
+      padding:8px 14px; border-bottom:1px solid var(--rule);
+      pointer-events:none;
+    }
+    .best { color:var(--coral); font-weight:700; }
+
+    /* sub-heading used within a section */
+    .sub-head {
+      font-family:'DM Serif Display',serif;
+      font-size:1.25rem; color:var(--ink);
+      margin-bottom:.4rem; letter-spacing:-.01em;
+    }
+    .sub-desc { font-size:.9rem; color:var(--ink2); margin-bottom:1.4rem; line-height:1.7; }
+
+    /* ── BibTeX ── */
+    .bibtex {
+      background:#1a1d2e; color:#a8d8a8;
+      border-radius:var(--r); padding:1.6rem 1.8rem;
+      font-family:'SFMono-Regular',Consolas,monospace;
+      font-size:.77rem; line-height:1.75; overflow-x:auto; white-space:pre-wrap;
+    }
+    .bibtex .key  { color:#82aaff; }
+    .bibtex .val  { color:#f8c555; }
+    .bibtex .punc { color:#89ddff; }
+
+    footer {
+      padding:2rem 1.5rem; text-align:center;
+      font-size:.76rem; color:var(--ink3);
+      border-top:1px solid var(--rule); background:var(--warm);
+    }
+    footer a { color:var(--blue); text-decoration:none; }
+
+    @keyframes up {
+      from { opacity:0; transform:translateY(16px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    @media (max-width:760px) {
+      nav .nav-links { display:none; }
+      .hero-title    { font-size:1.8rem; }
+      .sec-num       { font-size:2.2rem; }
+      .mrow          { grid-template-columns:1fr; }
+      .mrow-num      { display:none; }
+      .adv-grid      { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ Nav ═══ -->
+<nav>
+  <a class="brand" href="#">GP-4DGS</a>
+  <ul class="nav-links">
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#contributions">Contributions</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#bibtex">Cite</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ Hero ═══ -->
+<div class="hero">
+  <div class="venue-pill"><i class="fas fa-award" style="font-size:.6rem"></i>&ensp;CVPR 2026</div>
+
+  <h1 class="hero-title">
+    <em>GP-4DGS:</em> Probabilistic 4D Gaussian Splatting<br>
+    from Monocular Video<br>
+    with Variational Gaussian Processes
+  </h1>
+
+  <div class="authors-block">
+    <div>
+      <a href="https://mjmjeong.github.io/">Mijeong Kim</a><sup>1</sup>&ensp;·&ensp;
+      <a href="https://jungtaek.github.io/">Jungtaek Kim</a><sup>2</sup>&ensp;·&ensp;
+      <a href="https://cv.snu.ac.kr/index.php/bhhan/">Bohyung Han</a><sup>1</sup>
+    </div>
+    <div class="affil">
+      <sup>1</sup>ECE &amp; IPAI, Seoul National University, Korea&ensp;·&ensp;
+      <sup>2</sup>University of Wisconsin–Madison, USA
+    </div>
+  </div>
+
+  <div class="contrib-chips">
+    <span class="chip chip-blue"><i class="fas fa-chart-area" style="font-size:.7rem"></i> Probabilistic 4DGS</span>
+    <span class="chip chip-gold"><i class="fas fa-wave-square" style="font-size:.7rem"></i> Variational Gaussian Processes</span>
+    <span class="chip chip-coral"><i class="fas fa-exclamation-circle" style="font-size:.7rem"></i> Uncertainty Quantification</span>
+    <span class="chip chip-green"><i class="fas fa-forward" style="font-size:.7rem"></i> Temporal Extrapolation</span>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn btn-outline" href="https://arxiv.org/abs/2604.02915"><i class="ai ai-arxiv"></i> arXiv</a>
+    <a class="btn btn-outline" href="https://github.com/mjmjeong/gp4dgs"><i class="fab fa-github"></i> Code</a>
+    <a class="btn btn-outline" href="#"><i class="fas fa-robot"></i> Model</a>
+  </div>
+
+  <div class="teaser-wrap">
+    <div class="fig-card">
+      <img src="imgs/teaser.png" alt="GP-4DGS Teaser" style="width:100%; border-radius:8px; display:block;">
+      <p class="fig-cap">
+        <strong>Figure 1.</strong>
+        Unlike existing deterministic approaches, GP-4DGS enables robust uncertainty quantification,
+        future motion prediction, and prior estimation for unobserved regions.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 01 · Abstract ═══ -->
+<section id="abstract" class="alt">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-label">Abstract</h2>
+    </div>
+    <div class="abstract-text">
+      <p>
+        We present <strong style="color:var(--blue)">GP-4DGS</strong>, a novel framework that
+        integrates <strong>Gaussian Processes (GPs)</strong> into 4D Gaussian Splatting (4DGS) for
+        principled probabilistic modeling of dynamic scenes. While existing 4DGS methods focus on
+        deterministic reconstruction, they are inherently limited in capturing motion ambiguity and
+        <strong style="color:var(--coral)">lack mechanisms to assess prediction reliability</strong>.
+      </p>
+      <p>
+        By leveraging the kernel-based probabilistic nature of GPs, our approach introduces three
+        key capabilities: <strong>(i) uncertainty quantification</strong> for motion predictions,
+        <strong>(ii) motion estimation</strong> for unobserved or sparsely sampled regions, and
+        <strong>(iii) temporal extrapolation</strong> beyond observed training frames. To scale GPs
+        to the large number of Gaussian primitives in 4DGS, we design
+        <strong>spatio-temporal kernels</strong> that capture the correlation structure of
+        deformation fields and adopt <strong>variational Gaussian Processes with inducing
+        points</strong> for tractable inference. Our experiments show that GP-4DGS enhances
+        reconstruction quality while providing reliable uncertainty estimates that effectively
+        identify regions of high motion ambiguity.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 · Key Contributions ═══ -->
+<section id="contributions">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-label">Key <em>Contributions</em></h2>
+    </div>
+    <div class="contrib-list">
+      <div class="contrib-item">
+        <div class="contrib-icon">🔬</div>
+        <div>
+          <div class="contrib-title">First Probabilistic 4DGS Framework</div>
+          <div class="contrib-desc">
+            We introduce GP-4DGS, the first method to integrate Gaussian Processes into 4D Gaussian
+            Splatting, bringing principled probabilistic motion modeling to dynamic scene reconstruction.
+          </div>
+        </div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-icon">⚡</div>
+        <div style="width:100%">
+          <div class="contrib-title">Three New Capabilities for 4DGS</div>
+          <div class="contrib-desc">
+            Our framework unlocks three capabilities entirely absent in existing deterministic 4DGS approaches.
+          </div>
+          <div class="cap-grid">
+            <div class="cap-card">
+              <span class="cap-icon">🎯</span>
+              <div class="cap-title">Uncertainty Quantification</div>
+              <div class="cap-desc">Identifies regions of high motion ambiguity via GP variance maps.</div>
+            </div>
+            <div class="cap-card">
+              <span class="cap-icon">🚀</span>
+              <div class="cap-title">Future Motion Prediction</div>
+              <div class="cap-desc">Forecasts motion beyond training frames using the periodic temporal kernel.</div>
+            </div>
+            <div class="cap-card">
+              <span class="cap-icon">🌍</span>
+              <div class="cap-title">Unobserved Region Prior</div>
+              <div class="cap-desc">Propagates motion from well-observed to sparse or occluded primitives.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contrib-item">
+        <div class="contrib-icon">📈</div>
+        <div>
+          <div class="contrib-title">Improved Reconstruction Quality</div>
+          <div class="contrib-desc">
+            GP-4DGS consistently outperforms state-of-the-art baselines on the DyCheck benchmark,
+            with gains especially pronounced in sparsely observed and challenging scenes.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 · Method ═══ -->
+<section id="method" class="alt">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-label">Method</h2>
+    </div>
+
+    <!-- Three method components -->
+    <div class="method-rows">
+      <div class="mrow">
+        <div class="mrow-num">1</div>
+        <div>
+          <div class="mrow-title">
+            Composite Spatio-temporal Kernel
+            <span class="mtag mtag-blue">Core Design</span>
+          </div>
+          <div class="mrow-desc">
+            We sum a <strong>spatial Matérn kernel</strong> — capturing geometric smoothness among
+            nearby primitives — with a <strong>per-axis periodic temporal kernel</strong> for cyclic
+            motion patterns. Matérn is chosen over RBF to handle discontinuities between spatially
+            separate objects, enabling more faithful modeling of real-world dynamics.
+          </div>
+        </div>
+      </div>
+      <div class="mrow">
+        <div class="mrow-num">2</div>
+        <div>
+          <div class="mrow-title">
+            Variational Inference with Inducing Points
+            <span class="mtag mtag-gold">Scalability</span>
+          </div>
+          <div class="mrow-desc">
+            Exact GP inference is <span class="eq">O(N³)</span>, intractable for tens of thousands
+            of primitives. We use <strong>M inducing points</strong> (M ≪ N) initialized via
+            Chronos-based trajectory clustering, reducing complexity to
+            <span class="eq">O(NM² + M³)</span> during training and <span class="eq">O(M)</span>
+            per query at inference time.
+          </div>
+        </div>
+      </div>
+      <div class="mrow">
+        <div class="mrow-num">3</div>
+        <div>
+          <div class="mrow-title">
+            GP-GS Alternating Optimization
+            <span class="mtag mtag-coral">Training</span>
+          </div>
+          <div class="mrow-desc">
+            Stage 1 trains the GP on <strong>high-confidence primitives</strong> selected by their
+            cumulative rendering contribution. Stage 2 uses the cached GP posterior mean as a
+            guidance signal to regularize 4DGS, with an <strong>annealed loss threshold</strong>
+            that tightens as both representations converge.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ 04 · Results ═══ -->
+<section id="results">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-label">Experimental <em>Results</em></h2>
+    </div>
+
+    <!-- Table 1: Reconstruction quality -->
+    <h3 class="sub-head">Reconstruction Quality — DyCheck Benchmark</h3>
+    <p class="sub-desc">
+      Metrics: mPSNR ↑, mSSIM ↑, mLPIPS ↓. GP-4DGS consistently achieves superior results,
+      with the largest gains on the Challenging subset (reduced viewpoint overlap).
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Split</th><th>Method</th>
+            <th>mPSNR ↑</th><th>mSSIM ↑</th><th>mLPIPS ↓</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tbl-group"><td colspan="5">All Scenes (7)</td></tr>
+          <tr><td>All</td><td>Gaussian Marbles</td><td>15.84</td><td>0.54</td><td>0.57</td></tr>
+          <tr><td>All</td><td>SoM</td><td>17.09</td><td>0.65</td><td>0.39</td></tr>
+          <tr class="hl"><td>All</td><td>GP-4DGS (ours)</td><td class="best">17.38</td><td class="best">0.65</td><td class="best">0.37</td></tr>
+
+          <tr class="tbl-group"><td colspan="5">SoM 5 Scenes</td></tr>
+          <tr><td>SoM 5</td><td>SC-GS</td><td>14.13</td><td>0.48</td><td>0.49</td></tr>
+          <tr><td>SoM 5</td><td>D-3DGS</td><td>11.92</td><td>0.49</td><td>0.66</td></tr>
+          <tr><td>SoM 5</td><td>4DGS</td><td>13.42</td><td>0.49</td><td>0.56</td></tr>
+          <tr><td>SoM 5</td><td>HyperNeRF</td><td>15.99</td><td>0.59</td><td>0.51</td></tr>
+          <tr><td>SoM 5</td><td>SoM</td><td>16.73</td><td>0.64</td><td>0.43</td></tr>
+          <tr class="hl"><td>SoM 5</td><td>GP-4DGS (ours)</td><td class="best">16.92</td><td class="best">0.66</td><td class="best">0.41</td></tr>
+
+          <tr class="tbl-group"><td colspan="5">Challenging Subset (reduced viewpoint overlap)</td></tr>
+          <tr><td>Challenging</td><td>Gaussian Marbles</td><td>14.05</td><td>0.40</td><td>0.61</td></tr>
+          <tr><td>Challenging</td><td>SoM</td><td>14.56</td><td>0.46</td><td>0.53</td></tr>
+          <tr class="hl"><td>Challenging</td><td>GP-4DGS (ours)</td><td class="best">15.02</td><td class="best">0.46</td><td class="best">0.51</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fig-cap" style="margin-top:.8rem;">
+      <strong>Table 1.</strong> GP-4DGS surpasses all baselines across every split. The performance
+      gap widens on the Challenging subset, demonstrating robustness under sparse observations.
+    </p>
+
+    <hr class="div">
+
+    <!-- Table 2: Future extrapolation -->
+    <h3 class="sub-head">Future Motion Extrapolation</h3>
+    <p class="sub-desc">
+      PSNR ↑ evaluated on the last 5 and 15 frames held out from training. GP-4DGS dramatically
+      outperforms naïve linear extrapolation, especially for periodic motion.
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2" style="text-align:left; border-radius:8px 0 0 0;">Method</th>
+            <th colspan="2">Periodic Motion</th>
+            <th colspan="2">Non-periodic Motion</th>
+          </tr>
+          <tr>
+            <th>5 frames</th><th>15 frames</th>
+            <th>5 frames</th><th>15 frames</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Linear extrapolation</td><td>11.55</td><td>8.11</td><td>15.02</td><td>11.92</td></tr>
+          <tr class="hl"><td>GP-4DGS (ours)</td><td class="best">17.62</td><td class="best">16.65</td><td class="best">15.27</td><td class="best">13.22</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fig-cap" style="margin-top:.8rem;">
+      <strong>Table 2.</strong> The periodic temporal kernel captures cyclic structure effectively,
+      yielding a large PSNR gain (17.62 vs. 11.55 at 5 frames) over linear extrapolation.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ 05 · BibTeX ═══ -->
+<section id="bibtex" class="alt">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-label">BibTeX</h2>
+    </div>
+    <div class="bibtex"><span class="punc">@inproceedings{</span><span class="key">kim2026gp4dgs</span><span class="punc">,</span>
+  <span class="key">author</span>    <span class="punc">=</span> <span class="val">{Kim, Mijeong and Kim, Jungtaek and Han, Bohyung}</span><span class="punc">,</span>
+  <span class="key">title</span>     <span class="punc">=</span> <span class="val">{GP-4DGS: Probabilistic 4D Gaussian Splatting from Monocular Video via Variational Gaussian Processes}</span><span class="punc">,</span>
+  <span class="key">booktitle</span> <span class="punc">=</span> <span class="val">{CVPR}</span><span class="punc">,</span>
+  <span class="key">year</span>      <span class="punc">=</span> <span class="val">{2026}</span>
+<span class="punc">}</span></div>
+  </div>
+</section>
+
+<footer>
+  Template inspired by
+  <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a>.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,857 @@
+/* Global styles */
+:root {
+  /* Water - Softer blue gradient */
+  --water-primary: #64b5f6;
+  --water-secondary: #1976d2;
+  --water-accent: #bbdefb;
+  --water-text: #e3f2fd;
+  --water-background: linear-gradient(135deg, #81d4fa, #4fc3f7, #29b6f6);
+  
+  /* Fire - Softer red/orange gradient */
+  --fire-primary: #ff8a65;
+  --fire-secondary: #e64a19;
+  --fire-accent: #ffccbc;
+  --fire-text: #fff3e0;
+  --fire-background: linear-gradient(135deg, #ffab91, #ff8a65, #ff7043);
+  
+  /* Earth - Softer green gradient */
+  --earth-primary: #81c784;
+  --earth-secondary: #388e3c;
+  --earth-accent: #c8e6c9;
+  --earth-text: #e8f5e9;
+  --earth-background: linear-gradient(135deg, #a5d6a7, #81c784, #66bb6a);
+  
+  /* Wind - Softer gray/blue gradient */
+  --wind-primary: #90a4ae;
+  --wind-secondary: #546e7a;
+  --wind-accent: #cfd8dc;
+  --wind-text: #eceff1;
+  --wind-background: linear-gradient(135deg, #b0bec5, #90a4ae, #78909c);
+  
+  /* New section divider colors */
+  --section-divider: rgba(0, 0, 0, 0.1);
+  --section-highlight: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafbfc;
+  color: #1f2937;
+  line-height: 1.7;
+  scroll-behavior: smooth;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  padding-top: 0; /* body의 패딩은 제거하고 개별 컨테이너에서 처리 */
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+  -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 */
+  scroll-padding-top: 100px; /* 더 큰 스크롤 오프셋 */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  color: #111827;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  text-rendering: optimizeLegibility;
+}
+
+p {
+  margin-bottom: 1.2rem;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  color: #374151;
+}
+
+/* List styling improvements */
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+ul li, ol li {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+  color: #374151;
+  text-rendering: optimizeLegibility;
+}
+
+ul li {
+  list-style-type: none;
+  position: relative;
+}
+
+ul li::before {
+  content: '•';
+  color: #6366f1;
+  font-weight: bold;
+  position: absolute;
+  left: -1.2rem;
+  font-size: 1.1rem;
+}
+
+ol li {
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+
+/* Nested lists */
+ul ul, ol ol, ul ol, ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+ul ul li::before {
+  content: '◦';
+  color: #8b5cf6;
+}
+
+/* Text elements */
+strong, b {
+  font-weight: 600;
+  color: #111827;
+}
+
+em, i {
+  font-style: italic;
+  color: #4b5563;
+}
+
+.strong-blue {
+  font-weight: 600;
+  color: #1976d2;
+}
+
+code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Monaco', 'Consolas', monospace;
+  font-size: 0.875rem;
+  color: #333;
+  border: none;
+}
+
+/* Section styles */
+.section {
+  margin-bottom: 70px;
+  padding-bottom: 45px;
+  border-bottom: 1px solid var(--section-divider);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.025em;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 1.5px;
+  background: linear-gradient(90deg, currentColor, transparent);
+}
+
+/* Navigation styles */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: inherit;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s;
+  margin-bottom: 16px;
+  backdrop-filter: blur(5px);
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.navigation-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding: 20px 0;
+}
+
+.element-nav {
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(5px);
+}
+
+.element-nav:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+/* Element-specific navigation buttons */
+.element-nav.water {
+  background-color: rgba(100, 181, 246, 0.8);
+  color: var(--water-text);
+}
+
+.element-nav.fire {
+  background-color: rgba(255, 138, 101, 0.8);
+  color: var(--fire-text);
+}
+
+.element-nav.earth {
+  background-color: rgba(129, 199, 132, 0.8);
+  color: var(--earth-text);
+}
+
+.element-nav.wind {
+  background-color: rgba(144, 164, 174, 0.8);
+  color: var(--wind-text);
+}
+
+/* Sticky top navigation */
+.sticky-nav {
+  position: fixed !important; /* 강제로 고정 */
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  min-height: 60px; /* 최소 높이 설정으로 일관성 확보 */
+  transform: translateZ(0); /* 하드웨어 가속 활성화 */
+  will-change: transform; /* 최적화를 위한 힌트 제공 */
+}
+
+/* Enhanced PhysGaia Logo */
+.nav-logo {
+  margin-left: -15pt;
+  padding-left: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #1e88e5 0%, #e53935 25%, #43a047 50%, #78909c 75%, #1e88e5 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  animation: gradientShift 6s ease-in-out infinite;
+}
+
+.nav-logo::before {
+  content: '🌱';
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.nav-logo::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 2.3rem; /* 아이콘 크기 + gap만큼 오프셋 */
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #1e88e5, #e53935, #43a047, #78909c);
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+.nav-logo:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
+.nav-logo:hover::after {
+  width: calc(100% - 2.3rem); /* 전체 너비에서 아이콘 부분 제외 */
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(5deg);
+  }
+}
+
+.sticky-nav.hidden {
+  transform: translateY(-100%);
+}
+
+.sticky-nav .nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.sticky-nav .nav-link {
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.sticky-nav .nav-link:hover {
+  background: rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+}
+
+.sticky-nav .nav-link.active {
+  background: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+/* 16:9 aspect ratio */
+/* Video container styles */
+.video-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  position: relative; /* This is crucial for positioning children */
+  padding-bottom: 112.5%; /* 640:720 aspect ratio */
+  height: 0; /* Ensures height is controlled by padding-bottom */
+  transition: transform 0.3s ease;
+}
+
+
+.video-container img {
+  position: absolute; /* Position the image relative to its parent (.video-container) */
+  top: 0; /* Align to the top of the container */
+  left: 0; /* Align to the left of the container */
+  width: 100%; /* Make the image fill the full width of the container */
+  height: 100%; /* Make the image fill the full height of the container */
+  object-fit: cover; /* This will make sure the image covers the entire area without distortion, cropping if necessary */
+}
+
+.video-container:hover {
+  transform: scale(1.01);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Image carousel */
+.image-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-control {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background 0.3s;
+}
+
+.carousel-control:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.carousel-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.carousel-indicator.active {
+  background: white;
+}
+
+/* Description section styles */
+.description-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 45px;
+  background-color: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.description-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.description-section h2 {
+  margin-top: 0;
+  margin-bottom: 28px;
+  border-bottom: 2px solid rgba(25, 118, 210, 0.15);
+  padding-bottom: 18px;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.025em;
+}
+
+.description-section h3 {
+  margin-top: 35px;
+  margin-bottom: 18px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: -0.02em;
+}
+
+.description-section ul {
+  padding-left: 26px;
+  margin-bottom: 26px;
+}
+
+.description-section li {
+  margin-bottom: 14px;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.description-section p {
+  margin-bottom: 22px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #1f2937;
+  text-rendering: optimizeLegibility;
+}
+
+/* Abstract section styles moved to home.css to avoid duplication */
+
+/* Container for element pages */
+.element-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.element-header {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+}
+
+.element-header h1 {
+  font-size: 2.5rem;
+  margin: 20px 0;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.element-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.element-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* BibTeX citation section */
+.citation-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.citation-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.bibtex-container {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-x: auto;
+  font-family: monospace;
+  margin-bottom: 20px;
+}
+
+.copy-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+  background-color: #0d47a1;
+}
+
+/* Water specific styles */
+.water-container {
+  background: var(--water-background);
+  color: var(--water-text);
+}
+
+.water-container .element-header h1::after {
+  background: var(--water-accent);
+}
+
+/* Fire specific styles */
+.fire-container {
+  background: var(--fire-background);
+  color: var(--fire-text);
+}
+
+.fire-container .element-header h1::after {
+  background: var(--fire-accent);
+}
+
+/* Earth specific styles */
+.earth-container {
+  background: var(--earth-background);
+  color: var(--earth-text);
+}
+
+.earth-container .element-header h1::after {
+  background: var(--earth-accent);
+}
+
+/* Wind specific styles */
+.wind-container {
+  background: var(--wind-background);
+  color: var(--wind-text);
+}
+
+.wind-container .element-header h1::after {
+  background: var(--wind-accent);
+}
+
+/* Comparison table */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table thead {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.comparison-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Method Diagram Section Styles */
+/* The placeholder div that will become our grid container for the images */
+.method-diagram {
+  max-width: 1100px; /* Limits the overall width of the entire section */
+  margin: 30px auto;
+  border-radius: 8px;
+  overflow: hidden; /* Hides any overflow of content */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  /* New: Make teaser-container a Grid Container */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 4 columns of equal width */
+  gap: 15px; /* Space between the image items */
+  padding: 10px; /* Padding inside the overall container */
+  background-color: #f0f0f0; /* Optional: background for the container */
+}
+
+.method-image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.method-image-wrapper {
+  position: relative;
+  padding-bottom: 112.5%; /* Aspect ratio */
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.method-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.method-image-caption {
+  font-size: 1em;
+  color: #555;
+  margin-top: 10px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navigation-section {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .element-nav {
+    text-align: center;
+  }
+  
+  .element-header h1 {
+    font-size: 2rem;
+  }
+  
+  .sticky-nav {
+    padding: 10px 15px;
+    min-height: 50px;
+    position: fixed !important; /* 모바일에서도 강제로 고정 */
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+  }
+  
+  .sticky-nav .nav-links {
+    gap: 8px;
+  }
+  
+  .sticky-nav .nav-link {
+    padding: 4px 6px;
+    font-size: 0.85rem;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Animation for section transitions */
+.animate-in {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 1; /* Changed from 0 to 1 to ensure visibility */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Special case for contact section - always visible */
+#contact.animate-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Delayed animations for sequential elements */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }

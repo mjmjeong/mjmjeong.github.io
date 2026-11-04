@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Research project pages by Mijeong Kim: WorldRoPE, AgentDreamer, GP-4DGS, and PhysGaia.">
+  <link rel="canonical" href="https://mjmjeong.github.io/project/">
+  <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+  <title>Research Projects · Mijeong Kim</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #faf9fc; color: #27232d; font: 17px/1.6 system-ui, sans-serif; }
+    main { max-width: 1000px; margin: auto; padding: 48px 24px 72px; }
+    a { color: #66508d; text-underline-offset: 4px; }
+    h1 { margin: 32px 0 8px; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    .intro { margin: 0 0 32px; color: #625d6b; }
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    article { background: #fff; border: 1px solid #e2dce9; border-radius: 12px; overflow: hidden; }
+    article a { display: block; height: 100%; padding: 24px; color: inherit; text-decoration: none; }
+    article a:hover { background: #f5f1fa; }
+    a:focus-visible { outline: 3px solid #8061ad; outline-offset: 3px; }
+    article img { width: 100%; height: 180px; object-fit: contain; }
+    h2 { margin: 20px 0 8px; font-size: 1.35rem; }
+    article p { margin: 0; color: #625d6b; }
+    @media (max-width: 640px) { .projects { grid-template-columns: 1fr; } main { padding-top: 28px; } }
+  </style>
+</head>
+<body>
+<main>
+  <a href="../">← Mijeong Kim</a>
+  <h1>Research Projects</h1>
+  <p class="intro">3D/4D reconstruction, world modeling, and physics simulation.</p>
+  <div class="projects">
+    <article><a href="WorldRoPE/"><img src="../thumbs/worldrope-title.svg?v=16" alt="WorldRoPE illustration"><h2>WorldRoPE</h2><p>Probabilistic World-Centric Rotary Embedding for Multi-View Attention</p></a></article>
+    <article><a href="AgentDreamer/"><img src="../thumbs/agentdreamer.gif" alt="AgentDreamer illustration" loading="lazy"><h2>AgentDreamer</h2><p>Agentic 3D Motion Reasoning for Text-Controllable Physics Simulation</p></a></article>
+    <article><a href="GP4DGS/"><img src="../thumbs/CVPR26_gp4dgs.png" alt="GP-4DGS illustration" loading="lazy"><h2>GP-4DGS</h2><p>Probabilistic 4D Gaussian Splatting from Monocular Video via Variational Gaussian Processes</p></a></article>
+    <article><a href="PhysGaia/"><img src="../thumbs/CVPR26_physgaia.gif" alt="PhysGaia illustration" loading="lazy"><h2>PhysGaia</h2><p>A Physics-Aware Benchmark with Multi-Body Interactions for Dynamic Novel View Synthesis</p></a></article>
+  </div>
+</main>
+</body>
+</html>

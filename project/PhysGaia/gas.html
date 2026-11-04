@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas - PhysGaia</title>
+    <link rel="icon" type="image/png" href="./images/sprout.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/elements.css">
+    <meta name="description" content="Gas: Gas in the PhysGaia Dataset">
+</head>
+<body>
+  <nav class="sticky-nav" aria-label="Section Navigation">
+    <a href="index.html" class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><span role="img" aria-label="plant sprout">🌱</span>PhysGaia</a>
+  </nav> 
+  <div class="main-layout">
+    <nav class="sidebar-nav" aria-label="Main Navigation">
+      <ul>
+        <li><a href="index.html" class="nav-link home">🏠 Home</a></li>
+        <li><a href="liquid.html" class="nav-link water">💧 Liquid</a></li>
+        <li><a href="gas.html" class="nav-link fire">🔥 Gas</a></li>
+        <li><a href="viscoelastic.html" class="nav-link earth">🌍 Viscoelastic</a></li>
+        <li><a href="textile.html" class="nav-link wind">👗 Textile</a></li>
+      </ul>
+    </nav>
+    <main class="element-container fire-container">
+      <header class="hero-section fire-hero">
+        <h1 class="title"><span role="img" aria-label="gas">🔥</span> Gas</h1>
+        <h2 class="subtitle">Gas in PhysGaia</h2>
+        <div class="links-section">
+          <a href="https://huggingface.co/datasets/mijeongkim/PhysGaia/tree/main" class="link-button" target="_blank" rel="noopener noreferrer">Dataset</a>
+          <a href="https://arxiv.org/abs/2407.00000" class="link-button" target="_blank" rel="noopener noreferrer">arXiv Paper</a>
+        </div>
+      </header>
+      <section class="video-grid-section">
+        <div class="video-grid">
+          <div class="video-item">
+            <div class="video-container">
+              <img src="videos/gt_gif/pisa_cam1.gif" loading="lazy">
+            </div>
+            <div class="video-caption">Pisa</div>
+          </div>
+          <div class="video-item">
+            <div class="video-container">
+              <img src="videos/gt_gif/box-smoke_cam1.gif" loading="lazy">
+            </div>
+            <div class="video-caption">Box-smoke</div>
+          </div>
+          <div class="video-item">
+            <div class="video-container">
+              <img src="videos/gt_gif/falling_cam2.gif" loading="lazy">
+            </div>
+            <div class="video-caption">Falling</div>
+          </div>
+          <div class="video-item">
+            <div class="video-container">
+              <img src="videos/gt_gif/simple_smoke_cam1.gif" loading="lazy">
+            </div>
+            <div class="video-caption">Simple smoke</div>
+          </div>
+        </div>
+      </section>
+      <section class="element-description-section">
+        <div class="element-info">
+          <h3>About Gas in PhysGaia</h3>
+          <p>The gas in PhysGaia dataset represents the <strong>gas</strong> class, capturing the movement, diffusion, and turbulence of smoke-like or vaporous materials under various physical interactions.</p>
+          <h4>Physical Properties</h4>
+          <ul>
+            <li><strong>Diffusion:</strong> Spreading and mixing in air</li>
+            <li><strong>Turbulence:</strong> Swirling and chaotic motion</li>
+            <li><strong>Transparency:</strong> Partial visibility and light scattering</li>
+            <li><strong>Interaction:</strong> Dispersal, merging, and dissipation</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

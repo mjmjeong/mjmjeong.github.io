@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wind Element - PhysGaia</title>
+    <link rel="icon" type="image/png" href="./images/sprout.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/elements.css">
+    <meta name="description" content="Wind Element: Textile in the PhysGaia Dataset">
+</head>
+<body>
+  <nav class="sticky-nav" aria-label="Section Navigation">
+    <a href="index.html" class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><span role="img" aria-label="plant sprout">🌱</span>PhysGaia</a>
+  </nav>  
+  <div class="main-layout">
+    <nav class="sidebar-nav" aria-label="Main Navigation">
+      <ul>
+        <li><a href="index.html" class="nav-link home">🏠 Home</a></li>
+        <li><a href="liquid.html" class="nav-link water">💧 Liquid</a></li>
+        <li><a href="gas.html" class="nav-link fire">🔥 Gas</a></li>
+        <li><a href="viscoelastic.html" class="nav-link earth">🌍 Viscoelastic</a></li>
+        <li><a href="textile.html" class="nav-link wind">👗 Textile</a></li>
+      </ul>
+    </nav>
+    <main class="element-container wind-container">
+      <header class="hero-section wind-hero">
+        <h1 class="title"><span role="img" aria-label="textile">💨</span> Textile</h1>
+        <h2 class="subtitle">Textile in PhysGaia</h2>
+        <div class="links-section">
+          <a href="https://huggingface.co/datasets/mijeongkim/PhysGaia/tree/main" class="link-button" target="_blank" rel="noopener noreferrer">Dataset</a>
+          <a href="https://arxiv.org/abs/2407.00000" class="link-button" target="_blank" rel="noopener noreferrer">arXiv Paper</a>
+        </div>
+      </header>
+      <section class="video-grid-section">
+        <div class="video-grid">
+          <div class="video-item">
+            <div class="video-container">
+              <img src="videos/gt_gif/basin_cam2.gif" loading="lazy">
+            </div>
+            <div class="video-caption">Basin</div>
+          </div>
+          <div class="video-item">
+            <div class="video-container">
+              <img src="videos/gt_gif/lucy_cam1.gif" loading="lazy">
+            </div>
+            <div class="video-caption">Lucy</div>
+          </div>
+          <div class="video-item">
+            <div class="video-container">
+              <img src="videos/gt_gif/flags_cam2.gif" loading="lazy">
+            </div>
+            <div class="video-caption">Flags</div>
+          </div>
+          <div class="video-item">
+            <div class="video-container">
+              <img src="videos/gt_gif/single_flag_cam2.gif" loading="lazy">
+            </div>
+            <div class="video-caption">Single flag</div>
+          </div>
+        </div>
+      </section>
+      <section class="element-description-section">
+        <div class="element-info">
+          <h3>About Textile in PhysGaia</h3>
+          <p>The textile in PhysGaia dataset represents the <strong>textile</strong> class, showcasing the dynamic behavior of fabrics, cloths, and other flexible sheet-like materials. These simulations capture the flowing, billowing nature of textiles under various conditions.</p>
+          <h4>Physical Properties</h4>
+          <ul>
+            <li><strong>Flexibility:</strong> Ability to bend and fold in multiple directions</li>
+            <li><strong>Tensile Strength:</strong> Resistance to stretching and tearing</li>
+            <li><strong>Drape:</strong> Natural hanging behavior under gravity</li>
+            <li><strong>Wrinkling:</strong> Formation of complex fold patterns</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
