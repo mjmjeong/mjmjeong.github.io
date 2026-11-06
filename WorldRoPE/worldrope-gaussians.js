@@ -6,7 +6,7 @@
   const canvas = $('gaussian-canvas');
   const status = $('gaussian-viewer-status');
   const cache = new Map();
-  let manifest, scene, records, layer = 0, view = 'orbit', yaw = -.25, pitch = -.12;
+  let manifest, scene, records, layer = 3, view = 'query', yaw = -.25, pitch = -.12;
   let distance = 8, pan = [0, 0, 0], sequence = 0, framePending = false;
   let mainRenderer;
   const dot = (a, b) => a.reduce((s, x, i) => s + x * b[i], 0);
@@ -226,6 +226,7 @@
       });
       new ResizeObserver(schedule).observe(canvas);
       window.addEventListener('resize',schedule);
+      setCamera(view);
       selectScene(0);
     } catch(error){status.hidden=false;status.textContent=error.message;root.dataset.loading='error';}
   }
