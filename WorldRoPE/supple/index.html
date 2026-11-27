@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Anonymous supplementary material. Interactive layer-wise Gaussian support explorer."><title>WorldRoPE · Interactive Supplement</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="studio.css"><script src="assets/scene-data.js" defer></script><script src="viewer.js" defer></script><script src="studio.js" defer></script></head>
+<body><a class="skip-link" href="#gaussian-canvas">Skip to viewer</a>
+<header class="app-header"><div class="brand"><span class="brand-icon">◈</span><strong>WorldRoPE</strong><span class="header-divider"></span><span>Gaussian explorer</span></div><div class="header-actions"><span class="anonymous">Anonymous supplement</span><button id="open-reference">Paper figures &amp; results ↗</button><button id="open-help" aria-label="Viewer help">?</button></div></header>
+<main id="gaussian-explorer" class="studio" data-loading="true">
+<aside class="sidebar"><div class="sidebar-heading"><h2>Examples</h2></div>
+<div class="scene-columns"><span>Key image</span><span>Query image</span></div><div id="gaussian-scene-strip" class="scene-strip"></div>
+</aside>
+<section class="viewport-panel" aria-label="Interactive Gaussian viewer"><div class="concept-heading"><h1>Interpret <span>2D image tokens</span> in <em>3D world space.</em></h1><p>Without changing the <strong>Transformer architecture.</strong></p></div><div class="scene-heading" hidden><span class="eyebrow" id="dataset-label">RE10K</span><h2 id="gaussian-title">Loading scene</h2></div>
+<div class="gaussian-stage" id="gaussian-viewer"><canvas id="gaussian-canvas" tabindex="0" aria-label="Interactive 3D Gaussian supports. Drag to orbit, scroll to zoom, Shift and drag to pan."></canvas>
+<div id="camera-frame" hidden><span id="camera-frame-label">QUERY IMAGE BOUNDS</span><i></i><i></i><i></i><i></i></div>
+<div class="stage-top"><a id="gaussian-download" class="button" download>Export PLY ↓</a><button id="gaussian-reset" aria-label="Reset orbit camera">Reset ↺</button></div>
+<div class="loading-state"><span id="gaussian-viewer-status" role="status">Loading Gaussian supports…</span></div>
+<div class="stage-bottom"><span id="camera-mode">Query camera</span><span id="gaussian-count">Gaussian supports</span></div></div>
+<div class="viewer-controls"><div class="camera-row"><div class="camera-tabs" role="group" aria-label="Camera view"><button data-gaussian-camera="key" aria-pressed="false">Key View</button><button data-gaussian-camera="query" aria-pressed="true">Query View</button></div></div><div class="timeline"><div class="layer-label"><span class="eyebrow">Transformer</span><strong>Attention layers</strong></div><div class="layer-tabs" role="tablist" aria-label="Transformer layer"><button type="button" role="tab" aria-selected="false" data-gaussian-layer="0">Layer 1</button><button type="button" role="tab" aria-selected="false" data-gaussian-layer="1">Layer 2</button><button type="button" role="tab" aria-selected="false" data-gaussian-layer="2">Layer 3</button><button type="button" role="tab" aria-selected="true" data-gaussian-layer="3">Layer 4</button><button type="button" role="tab" aria-selected="false" data-gaussian-layer="4">Layer 5</button><button type="button" role="tab" aria-selected="false" data-gaussian-layer="5">Layer 6</button></div><div class="layer-note"><span class="visualization-note">Predicted 3D distributions are visualized using the average color of each corresponding key-image patch.</span></div></div>
+<p class="layer-explanation">Depth estimates tend to become more refined and uncertainty generally decreases across layers. Layer 6 is an exception; this may reflect its direct connection to the output head.</p>
+</div><footer class="viewer-footer"><span id="gaussian-description">Drag to orbit · Scroll to zoom · Shift + drag to pan</span><span>RGB for visualization · WebGL 2</span></footer></section></main>
+<dialog id="reference-dialog"><div class="dialog-heading"><div><span class="eyebrow">SUPPLEMENTARY REFERENCE</span><h2>Method &amp; results</h2></div><button data-close-dialog aria-label="Close reference">✕</button></div><div class="reference-content"><p>Selected figures and results from the main paper. The explorer visualizes predicted Gaussian support, with RGB supplied for inspection; it is not a synthesized target image or an additional benchmark.</p><figure><video controls muted loop playsinline preload="none" poster="assets/hero-poster.png"><source src="assets/hero.mp4" type="video/mp4"></video><figcaption>Cross-view projection of Gaussian token support.</figcaption></figure>      <section class="paper-section" id="overview">
+        <h2>World-centric token geometry</h2>
+        <p>A patch covers a viewing frustum, often crossing more than one depth. A mixture of volumetric Gaussians can retain those alternative surfaces, their uncertainty, and the finite footprint of the patch.</p>
+        <figure class="paper-figure">
+          <img src="assets/paper-figure-1.png" alt="Figure 1 from the paper: ray-based geometry, world-centric Gaussian token geometry, and probabilistic rotary embedding" loading="lazy">
+          <figcaption><b>Figure 1.</b> WorldRoPE overview. Multi-hypothesis token support is projected into the query view, where RoPE is integrated over possible key positions.</figcaption>
+        </figure>
+      </section>
+
+      <section class="paper-section" id="method">
+        <h2>WorldRoPE in attention</h2>
+        <p>At each Transformer layer, token features predict 3D Gaussian support for key patches. Projection into the query view gives a closed-form expected rotary operator for cross-view attention. The updated features inform geometry prediction in the next layer.</p>
+        <figure class="paper-figure">
+          <img src="assets/paper-figure-2.png" alt="Figure 2 from the paper: WorldRoPE inside multi-view attention, from Gaussian prediction to the next attention layer" loading="lazy">
+          <figcaption><b>Figure 2.</b> Geometry prediction and cross-view attention within a Transformer layer.</figcaption>
+        </figure>
+      </section>
+
+
+      <section class="paper-section" id="results">
+        <h2>Novel view synthesis</h2>
+        <p>With LVSM, WorldRoPE improves PSNR, SSIM, and LPIPS on RE10K.</p>
+        <figure class="paper-figure qualitative-figure">
+          <div class="image-scroll"><img src="assets/paper-figure-3.png" alt="Figure 3 from the paper: reference views, ground truth, six positional encoding baselines, and WorldRoPE on RE10K" loading="lazy"></div>
+          <figcaption><b>Figure 3.</b> Qualitative comparisons, including stair railings and house facades.</figcaption>
+        </figure>
+        <div class="table-scroll"><table>
+          <caption>Novel view synthesis with LVSM. Higher PSNR and SSIM, lower LPIPS.</caption>
+          <thead><tr><th rowspan="2">Method</th><th colspan="3">RE10K</th></tr><tr><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th></tr></thead>
+          <tbody><tr><th>Plücker ray</th><td>24.62</td><td>0.790</td><td>0.108</td></tr>
+<tr><th>GTA</th><td>25.05</td><td>0.799</td><td>0.102</td></tr>
+<tr><th>PRoPE</th><td>25.44</td><td>0.811</td><td>0.095</td></tr>
+<tr><th>RayRoPE</th><td>26.17</td><td>0.833</td><td>0.081</td></tr>
+<tr><th>URoPE</th><td>26.26</td><td>0.834</td><td>0.078</td></tr>
+<tr class="ours"><th>WorldRoPE</th><td>26.75</td><td>0.846</td><td>0.073</td></tr></tbody>
+        </table></div>
+        <p class="table-note">Table 2 in the paper. PSNR is in dB.</p>
+      </section>
+</div></dialog>
+<dialog id="help-dialog"><div class="dialog-heading"><h2>Explore Gaussian supports</h2><button data-close-dialog aria-label="Close help">✕</button></div><div class="help-content"><p>Select a RE10K scene, then compare its predicted supports across six Transformer layers.</p><dl><dt>Query / Key View</dt><dd>Align to the captured camera. The rectangular outline marks the original image bounds.</dd><dt>Drag</dt><dd>Orbit the scene. Moving the camera hides the image outline.</dd><dt>Shift + drag</dt><dd>Pan the camera.</dd><dt>Scroll</dt><dd>Zoom in or out.</dd><dt>Arrow keys / + / −</dt><dd>Orbit or zoom with the keyboard.</dd><dt>Export PLY</dt><dd>Download the selected scene and layer.</dd></dl><p>All assets are bundled. Extract the complete folder and open 3d_viewer.html. No network connection is needed. The viewer requires WebGL 2.</p></div></dialog>
+<noscript><p class="noscript">Enable JavaScript to open the interactive supplement.</p></noscript></body></html>
